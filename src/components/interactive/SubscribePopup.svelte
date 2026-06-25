@@ -1,22 +1,58 @@
 <script>
   import { onMount } from 'svelte';
 
+  const KIT_API_KEY = 'kit_7072532b109917c8f97f071ae9962c6b';
+  const KIT_FORM_ID = 'e45e119a8f';
+
   let isVisible = $state(false);
   let email = $state('');
   let isSubmitted = $state(false);
+  let isSubmitting = $state(false);
   let isValid = $state(true);
+  let errorMessage = $state('');
 
   function validateEmail(e) {
     return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(e);
   }
 
-  function handleSubmit() {
+  async function handleSubmit() {
     if (!validateEmail(email)) {
       isValid = false;
+      errorMessage = 'Please enter a valid email';
       return;
     }
+
     isValid = true;
-    isSubmitted = true;
+    isSubmitting = true;
+    errorMessage = '';
+
+    try {
+      const response = await fetch(
+        `https://api.convertkit.com/v3/forms/${KIT_FORM_ID}/subscribe`,
+        {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            api_key: KIT_API_KEY,
+            email: email,
+          }),
+        }
+      );
+
+      const data = await response.json();
+
+      if (response.ok) {
+        isSubmitted = true;
+      } else {
+        errorMessage = data.message || 'Something went wrong. Please try again.';
+        isValid = false;
+      }
+    } catch (err) {
+      errorMessage = 'Network error. Please try again.';
+      isValid = false;
+    } finally {
+      isSubmitting = false;
+    }
   }
 
   function dismiss() {
@@ -64,17 +100,28 @@
                 class="flex gap-2"
                 onsubmit={(e) => { e.preventDefault(); handleSubmit(); }}
               >
-                <input
-                  type="email"
-                  bind:value={email}
-                  placeholder="you@company.com"
-                  class="input input-bordered input-sm w-full md:w-56 {isValid ? '' : 'input-error'}"
-                />
+                <div class="flex flex-col gap-1">
+                  <input
+                    type="email"
+                    bind:value={email}
+                    placeholder="you@company.com"
+                    disabled={isSubmitting}
+                    class="input input-bordered input-sm w-full md:w-56 {isValid ? '' : 'input-error'}"
+                  />
+                  {#if errorMessage}
+                    <span class="text-error text-xs">{errorMessage}</span>
+                  {/if}
+                </div>
                 <button
                   type="submit"
                   class="btn btn-primary btn-sm"
+                  disabled={isSubmitting}
                 >
-                  Subscribe
+                  {#if isSubmitting}
+                    <span class="loading loading-spinner loading-xs"></span>
+                  {:else}
+                    Subscribe
+                  {/if}
                 </button>
               </form>
             </div>
