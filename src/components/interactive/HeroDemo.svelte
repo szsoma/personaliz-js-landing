@@ -1,7 +1,7 @@
 <script>
   import { onMount } from 'svelte';
 
-  const demos = [
+  const defaultDemos = [
     {
       url: '?p_h1=ERP_demo_for_growing_teams&p_cta=Book_a_demo',
       headline: 'ERP demo for growing teams',
@@ -21,6 +21,8 @@
 
   let current = $state(0);
   let typedUrl = $state('');
+  let headline = $state(defaultDemos[0].headline);
+  let cta = $state(defaultDemos[0].cta);
   let isTyping = $state(false);
   let isPaused = $state(false);
   let isEditing = $state(false);
@@ -42,8 +44,10 @@
   }
 
   function nextDemo() {
-    current = (current + 1) % demos.length;
-    typeUrl(demos[current].url);
+    current = (current + 1) % defaultDemos.length;
+    headline = defaultDemos[current].headline;
+    cta = defaultDemos[current].cta;
+    typeUrl(defaultDemos[current].url);
   }
 
   function parseUrlParams(url) {
@@ -63,10 +67,10 @@
   function updateFromUrl(url) {
     const params = parseUrlParams(url);
     if (params.p_h1) {
-      demos[current].headline = params.p_h1;
+      headline = params.p_h1;
     }
     if (params.p_cta) {
-      demos[current].cta = params.p_cta;
+      cta = params.p_cta;
     }
   }
 
@@ -86,7 +90,7 @@
   }
 
   onMount(() => {
-    typeUrl(demos[current].url);
+    typeUrl(defaultDemos[current].url);
     interval = setInterval(() => {
       if (!isPaused && !isTyping && !isEditing) {
         setTimeout(nextDemo, 2000);
@@ -110,17 +114,18 @@
       <div class="h-3 w-3 rounded-full bg-warning/60"></div>
       <div class="h-3 w-3 rounded-full bg-success/60"></div>
     </div>
-    <div class="flex-1 ml-3">
-      <div class="bg-base-100 rounded-md border border-base-300 px-3 py-1.5 text-xs font-mono">
-        <span class="text-base-content/50">https://yoursite.com/landing</span><input
+    <div class="flex-1 ml-3 min-w-0">
+      <div class="bg-base-100 rounded-md border border-base-300 px-3 py-1.5 text-xs font-mono flex items-center">
+        <span class="text-base-content/50 flex-shrink-0">https://yoursite.com/landing</span>
+        <input
           type="text"
           value={typedUrl}
           oninput={handleUrlInput}
           onfocus={handleUrlFocus}
           onblur={handleUrlBlur}
-          class="bg-transparent outline-none text-primary w-48 md:w-64"
+          class="bg-transparent outline-none text-primary flex-1 min-w-0 w-full"
           placeholder="?p_h1=Your_headline&p_cta=Your_CTA"
-        /><span class="animate-pulse text-base-content/30">|</span>
+        />
       </div>
     </div>
   </div>
@@ -128,17 +133,17 @@
   <!-- Page mockup -->
   <div class="p-8 md:p-12">
     <div class="mb-3">
-      <span class="badge badge-accent">URL param → page element</span>
+      <span class="badge badge-primary">URL param → page element</span>
     </div>
     <h3 class="text-base-content text-2xl md:text-3xl font-light mb-4 leading-tight transition-all duration-500">
-      {demos[current].headline}
+      {headline}
     </h3>
     <p class="text-base-content/70 text-base mb-6 max-w-md leading-relaxed">
       Book a demo with our team to see how it works for your business.
     </p>
     <div class="flex items-center gap-3">
-      <span class="btn btn-accent btn-sm transition-all duration-500">
-        {demos[current].cta}
+      <span class="btn btn-primary btn-sm transition-all duration-500">
+        {cta}
       </span>
       <span class="text-xs text-base-content/50">
         ← Changed from URL
@@ -153,7 +158,7 @@
       p_h1 → headline
     </span>
     <span class="text-xs text-base-content/50 flex items-center gap-1.5">
-      <span class="h-2 w-2 rounded-full bg-accent"></span>
+      <span class="h-2 w-2 rounded-full bg-primary"></span>
       p_cta → button
     </span>
   </div>

@@ -16,6 +16,7 @@
     "@tailwindcss/vite": "^4.3.1",
     "astro": "^7.0.2",
     "daisyui": "^5.5.23",
+    "geist": "^1.7.2",
     "svelte": "^5.56.4",
     "tailwindcss": "^4.3.1"
   }
