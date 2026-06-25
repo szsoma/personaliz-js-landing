@@ -5,6 +5,7 @@
   const KIT_FORM_ID = 'e45e119a8f';
 
   let isVisible = $state(false);
+  let isAnimating = $state(false);
   let email = $state('');
   let isSubmitted = $state(false);
   let isSubmitting = $state(false);
@@ -56,7 +57,10 @@
   }
 
   function dismiss() {
-    isVisible = false;
+    isAnimating = false;
+    setTimeout(() => {
+      isVisible = false;
+    }, 400);
     sessionStorage.setItem('p13n-popup-dismissed', 'true');
   }
 
@@ -65,6 +69,9 @@
     if (!dismissed) {
       setTimeout(() => {
         isVisible = true;
+        requestAnimationFrame(() => {
+          isAnimating = true;
+        });
       }, 10000);
     }
   });
@@ -72,8 +79,8 @@
 
 {#if isVisible}
   <div
-    class="fixed bottom-0 left-0 right-0 z-50 p-4 md:p-6"
-    style="animation: slideUp 0.4s ease-out forwards;"
+    class="popup-container fixed bottom-0 left-0 right-0 z-50 p-4 md:p-6"
+    class:popup-visible={isAnimating}
   >
     <div class="mx-auto max-w-2xl bg-base-100 rounded-2xl shadow-xl border border-base-300 overflow-hidden">
       <div class="flex items-center justify-between p-4 md:p-5">
@@ -143,14 +150,14 @@
 {/if}
 
 <style>
-  @keyframes slideUp {
-    from {
-      transform: translateY(100%);
-      opacity: 0;
-    }
-    to {
-      transform: translateY(0);
-      opacity: 1;
-    }
+  .popup-container {
+    transform: translateY(100%);
+    opacity: 0;
+    transition: transform 0.4s ease-out, opacity 0.4s ease-out;
+  }
+
+  .popup-visible {
+    transform: translateY(0);
+    opacity: 1;
   }
 </style>
