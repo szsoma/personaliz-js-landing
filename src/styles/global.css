@@ -116,4 +116,20 @@
   section[id] {
     scroll-margin-top: 80px;
   }
+
+  .logo-text {
+    fill: #222222;
+  }
+
+  .logo-js {
+    fill: #533AFD;
+  }
+
+  [data-theme="stripe-dark"] .logo-text {
+    fill: #ffffff;
+  }
+
+  [data-theme="stripe-dark"] .logo-js {
+    fill: #ffffff;
+  }
 }
