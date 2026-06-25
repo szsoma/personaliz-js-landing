@@ -1,0 +1,71 @@
+---
+// src/components/sections/FAQ.astro
+import SectionHeading from '../ui/SectionHeading.astro';
+
+const faqs = [
+  {
+    q: 'Is this an A/B testing tool?',
+    a: 'Not exactly. It is a lightweight personalization script. It helps you change content based on URL params, UTMs, visitor behavior, and context. A/B testing can be added later, but the first goal is better campaign message match.',
+  },
+  {
+    q: 'Do I need to duplicate pages?',
+    a: 'No. That is the main point. You can keep one page and use URL parameters to change selected content for different campaigns.',
+  },
+  {
+    q: 'Can marketers use this without developers?',
+    a: 'Yes. After the script is installed, marketers can create campaign URLs that change approved elements on the page. Data attributes define which elements can be changed.',
+  },
+  {
+    q: 'Can it change button links?',
+    a: 'Yes. You can change CTA text and CTA URLs. For example, one campaign can send visitors to /demo, while another sends them to /pricing.',
+  },
+  {
+    q: 'Does it work with Google Ads and LinkedIn Ads?',
+    a: 'Yes. You can use personalized URLs in Google Ads, LinkedIn Ads, Meta Ads, email campaigns, partner links, or any traffic source that allows URL parameters.',
+  },
+  {
+    q: 'Is it safe to let the URL change page text?',
+    a: 'The script uses safe text replacement through textContent, not innerHTML. It also blocks unsafe values and unsafe CTA URLs.',
+  },
+  {
+    q: 'Will this hurt page speed?',
+    a: 'The script is lightweight and runs client-side. It only scans elements that use personalization attributes.',
+  },
+  {
+    q: 'What can I personalize?',
+    a: 'You can personalize headlines, subtitles, CTA text, CTA links, images, section visibility, returning visitor messages, and campaign-specific blocks.',
+  },
+  {
+    q: 'Who is this for?',
+    a: 'It is for PPC teams, CMOs, growth marketers, agencies, and website owners who want more relevant landing pages without rebuilding their process.',
+  },
+  {
+    q: 'What is the simplest use case?',
+    a: 'Add a data attribute to a headline, then change it from the URL. Add data-variant="h1" to your h1, then use ?p_h1=Grow_your_business_online.',
+  },
+];
+---
+
+<section class="py-20 md:py-28 bg-base-200" id="faq">
+  <div class="mx-auto max-w-3xl px-6">
+    <SectionHeading label="FAQ">
+      <h2 class="text-base-content text-2xl md:text-[26px] font-light leading-tight tracking-tight mb-4">
+        Frequently asked questions
+      </h2>
+    </SectionHeading>
+
+    <div class="space-y-3 mt-12">
+      {faqs.map((faq) => (
+        <div class="collapse collapse-plus bg-base-100 border border-base-300 rounded-xl">
+          <input type="radio" name="faq-accordion" />
+          <div class="collapse-title text-base-content font-medium text-base">
+            {faq.q}
+          </div>
+          <div class="collapse-content">
+            <p class="text-base-content/70 text-sm leading-relaxed">{faq.a}</p>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

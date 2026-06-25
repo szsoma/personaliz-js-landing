@@ -1,0 +1,44 @@
+---
+// src/components/sections/SocialProof.astro
+import SectionHeading from '../ui/SectionHeading.astro';
+
+const cards = [
+  {
+    title: 'Designed for PPC workflows',
+    description: 'Campaign URLs, UTM logic, ad message match, and fast landing page iteration.',
+    icon: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-6 h-6"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>`,
+  },
+  {
+    title: 'Works with any website',
+    description: 'HTML, Webflow, WordPress, Next.js, any framework. Just add a script tag.',
+    icon: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-6 h-6"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>`,
+  },
+  {
+    title: 'No heavy platform required',
+    description: 'A lightweight script, not a full enterprise personalization suite.',
+    icon: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-6 h-6"><polyline points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>`,
+  },
+];
+---
+
+<section class="py-20 md:py-28 bg-base-200">
+  <div class="mx-auto max-w-6xl px-6">
+    <SectionHeading label="Why trust us">
+      <h2 class="text-base-content text-2xl md:text-[26px] font-light leading-tight tracking-tight mb-4">
+        Built around how modern PPC landing pages actually work
+      </h2>
+    </SectionHeading>
+
+    <div class="grid md:grid-cols-3 gap-6 mt-12">
+      {cards.map((card) => (
+        <div class="card bg-base-100 border border-base-300">
+          <div class="card-body">
+            <div class="text-primary mb-4" set:html={card.icon} />
+            <h3 class="card-title text-base-content text-lg">{card.title}</h3>
+            <p class="text-base-content/70 text-sm">{card.description}</p>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

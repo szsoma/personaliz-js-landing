@@ -1,4 +1,5 @@
 @import "tailwindcss";
+@plugin "daisyui";
 
 @theme {
   --color-stripe-indigo: #533afd;
@@ -35,12 +36,53 @@
   --radius-xl: 16px;
 }
 
+@plugin "daisyui/theme" {
+  name: "stripe";
+  default: true;
+  prefersdark: false;
+  color-scheme: light;
+  --color-base-100: #ffffff;
+  --color-base-200: #f8fafd;
+  --color-base-300: #e5edf5;
+  --color-base-content: #061b31;
+  --color-primary: #533afd;
+  --color-primary-content: #ffffff;
+  --color-secondary: #7f7dfc;
+  --color-secondary-content: #ffffff;
+  --color-accent: #ff6118;
+  --color-accent-content: #ffffff;
+  --color-neutral: #273951;
+  --color-neutral-content: #ffffff;
+  --color-info: #533afd;
+  --color-info-content: #ffffff;
+  --color-success: #22c55e;
+  --color-success-content: #ffffff;
+  --color-warning: #f59e0b;
+  --color-warning-content: #ffffff;
+  --color-error: #ef4444;
+  --color-error-content: #ffffff;
+  --radius-selector: 8px;
+  --radius-field: 8px;
+  --radius-box: 16px;
+  --border: 1px;
+  --depth: 1;
+  --noise: 0;
+}
+
 @layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
   body {
     font-family: var(--font-sans);
     color: var(--color-slate-body);
     background-color: var(--color-surface-white);
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+  }
+
+  section[id] {
+    scroll-margin-top: 80px;
   }
 }

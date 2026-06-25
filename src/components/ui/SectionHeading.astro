@@ -1,0 +1,17 @@
+---
+// src/components/ui/SectionHeading.astro
+interface Props {
+  label?: string;
+  class?: string;
+  align?: 'left' | 'center';
+}
+
+const { label, class: className = '', align = 'center' } = Astro.props;
+---
+
+<div class={`${align === 'center' ? 'text-center' : ''} ${className}`}>
+  {label && (
+    <span class="text-primary text-xs font-semibold uppercase tracking-widest mb-3 block">{label}</span>
+  )}
+  <slot />
+</div>

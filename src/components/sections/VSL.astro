@@ -1,0 +1,42 @@
+---
+// src/components/sections/VSL.astro
+import SectionHeading from '../ui/SectionHeading.astro';
+import CodeWalkthrough from '../interactive/CodeWalkthrough.svelte';
+
+const bullets = [
+  'Change text and CTAs from URL params',
+  'Show or hide sections based on visitor context',
+  'Keep one page for many campaigns',
+];
+---
+
+<section class="py-20 md:py-28">
+  <div class="mx-auto max-w-6xl px-6">
+    <SectionHeading label="How it works">
+      <h2 class="text-base-content text-2xl md:text-[26px] font-light leading-tight tracking-tight mb-4">
+        See how one URL changes the page
+      </h2>
+    </SectionHeading>
+
+    <div class="grid md:grid-cols-2 gap-12 mt-12 items-start">
+      <CodeWalkthrough client:visible />
+
+      <div class="space-y-6">
+        {bullets.map((bullet) => (
+          <div class="flex items-start gap-3">
+            <span class="mt-1 flex-shrink-0">
+              <svg class="w-5 h-5 text-primary" viewBox="0 0 20 20" fill="currentColor">
+                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
+              </svg>
+            </span>
+            <span class="text-base-content/70 text-base">{bullet}</span>
+          </div>
+        ))}
+
+        <div class="pt-4">
+          <a href="#subscribe" class="btn btn-primary">Show me the script</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

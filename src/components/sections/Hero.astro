@@ -1,0 +1,32 @@
+---
+// src/components/sections/Hero.astro
+import HeroDemo from '../interactive/HeroDemo.svelte';
+---
+
+<section class="relative overflow-hidden pt-32 pb-20 md:pt-40 md:pb-28">
+  <div class="absolute inset-0 bg-gradient-to-b from-base-200 to-base-100 pointer-events-none"></div>
+
+  <div class="relative mx-auto max-w-6xl px-6">
+    <div class="grid md:grid-cols-2 gap-12 md:gap-16 items-center">
+      <div>
+        <h1 class="text-base-content text-4xl md:text-5xl lg:text-[44px] font-light leading-[1.03] tracking-tight mb-6">
+          Turn one page into many campaign-specific landing pages
+        </h1>
+        <p class="text-base-content/70 text-base md:text-lg leading-relaxed mb-8 max-w-lg">
+          Change headlines, subtitles, CTAs, links, and sections based on URL parameters, UTMs, referrer, returning visitors, location, time, or past behavior. No duplicate pages. No backend. No complex setup.
+        </p>
+        <div class="flex flex-wrap items-center gap-4 mb-6">
+          <a href="#subscribe" class="btn btn-primary btn-lg">Get early access</a>
+          <a href="#how-it-works" class="btn btn-ghost btn-lg border-base-300">See how it works</a>
+        </div>
+        <p class="text-base-content/50 text-sm">
+          Built for PPC teams, CMOs, agencies, and growth-focused websites.
+        </p>
+      </div>
+
+      <div class="relative">
+        <HeroDemo client:visible />
+      </div>
+    </div>
+  </div>
+</section>

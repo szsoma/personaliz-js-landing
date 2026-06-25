@@ -1,0 +1,43 @@
+---
+// src/components/sections/WhatsIncluded.astro
+import SectionHeading from '../ui/SectionHeading.astro';
+
+const features = [
+  { title: 'URL parameter personalization', description: 'Change page content from URL values like p_h1, p_subtitle, and p_cta.' },
+  { title: 'UTM-based rules', description: 'Show, hide, or change content based on utm_source, utm_medium, or utm_campaign.' },
+  { title: 'CTA text and link swaps', description: 'Change the button label and destination URL for different campaigns.' },
+  { title: 'Show and hide sections', description: 'Display specific sections only when visitor conditions match.' },
+  { title: 'Returning visitor messages', description: 'Show different content to people who have visited before.' },
+  { title: 'Referrer-based personalization', description: 'Change content for visitors coming from Google, LinkedIn, or other sources.' },
+  { title: 'Behavior-based personalization', description: 'Adapt content based on previous clicks, viewed pages, or submitted forms.' },
+  { title: 'Segment memory', description: 'Remember useful values like industry or persona across pages.' },
+  { title: 'Simple data attributes', description: 'Use straightforward attributes instead of a complex setup.' },
+  { title: 'Lightweight script', description: 'Client-side, fast, and designed for marketing sites.' },
+];
+---
+
+<section class="py-20 md:py-28 bg-base-200" id="features">
+  <div class="mx-auto max-w-6xl px-6">
+    <SectionHeading label="Features">
+      <h2 class="text-base-content text-2xl md:text-[26px] font-light leading-tight tracking-tight mb-4">
+        Everything you need for lightweight landing page personalization
+      </h2>
+    </SectionHeading>
+
+    <div class="grid md:grid-cols-2 gap-4 mt-12">
+      {features.map((feature) => (
+        <div class="flex items-start gap-3 p-4 rounded-lg hover:bg-base-100 transition-colors">
+          <span class="mt-1 flex-shrink-0">
+            <svg class="w-5 h-5 text-primary" viewBox="0 0 20 20" fill="currentColor">
+              <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
+            </svg>
+          </span>
+          <div>
+            <h3 class="text-base-content text-sm font-medium mb-1">{feature.title}</h3>
+            <p class="text-base-content/70 text-sm">{feature.description}</p>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

@@ -1,0 +1,47 @@
+---
+// src/components/sections/Trust.astro
+import SectionHeading from '../ui/SectionHeading.astro';
+
+const badges = [
+  {
+    title: 'Safe by default',
+    description: 'The script uses text replacement, not unsafe HTML injection.',
+    icon: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-6 h-6"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>`,
+  },
+  {
+    title: 'No tracking by default',
+    description: 'Runs client-side without sending visitor data anywhere.',
+    icon: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-6 h-6"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>`,
+  },
+  {
+    title: 'Works with existing pages',
+    description: 'Add attributes to the elements you already have.',
+    icon: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-6 h-6"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>`,
+  },
+  {
+    title: 'Built for campaign speed',
+    description: 'Launch new message angles by changing URLs, not duplicating pages.',
+    icon: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-6 h-6"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>`,
+  },
+];
+---
+
+<section class="py-20 md:py-28">
+  <div class="mx-auto max-w-6xl px-6">
+    <SectionHeading label="Trust">
+      <h2 class="text-base-content text-2xl md:text-[26px] font-light leading-tight tracking-tight mb-4">
+        Simple enough for marketers. Structured enough for serious teams.
+      </h2>
+    </SectionHeading>
+
+    <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mt-12">
+      {badges.map((badge) => (
+        <div class="text-center p-6 rounded-xl border border-base-300">
+          <div class="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center text-primary mx-auto mb-4" set:html={badge.icon} />
+          <h3 class="text-base-content text-sm font-medium mb-2">{badge.title}</h3>
+          <p class="text-base-content/70 text-sm">{badge.description}</p>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

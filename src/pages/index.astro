@@ -1,17 +1,53 @@
 ---
 import '../styles/global.css';
+import Navbar from '../components/layout/Navbar.astro';
+import Footer from '../components/layout/Footer.astro';
+import Hero from '../components/sections/Hero.astro';
+import Problem from '../components/sections/Problem.astro';
+import VSL from '../components/sections/VSL.astro';
+import CTABand from '../components/sections/CTABand.astro';
+import SocialProof from '../components/sections/SocialProof.astro';
+import Benefits from '../components/sections/Benefits.astro';
+import BeforeAfter from '../components/sections/BeforeAfter.astro';
+import HowItWorks from '../components/sections/HowItWorks.astro';
+import WhatsIncluded from '../components/sections/WhatsIncluded.astro';
+import CTA from '../components/sections/CTA.astro';
+import AboutUs from '../components/sections/AboutUs.astro';
+import Trust from '../components/sections/Trust.astro';
+import FAQ from '../components/sections/FAQ.astro';
+import FinalCTA from '../components/sections/FinalCTA.astro';
+import SubscribePopup from '../components/interactive/SubscribePopup.svelte';
 ---
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="stripe">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>PersonalizeJS</title>
+  <title>PersonalizeJS — Turn one page into many campaign-specific landing pages</title>
+  <meta name="description" content="Change headlines, subtitles, CTAs, links, and sections based on URL parameters, UTMs, referrer, returning visitors, location, time, or past behavior. No duplicate pages. No backend.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
 </head>
 <body>
-  <h1 class="text-deep-navy text-4xl font-light">PersonalizeJS</h1>
+  <Navbar />
+  <main>
+    <Hero />
+    <Problem />
+    <VSL />
+    <CTABand />
+    <SocialProof />
+    <Benefits />
+    <BeforeAfter />
+    <HowItWorks />
+    <WhatsIncluded />
+    <CTA />
+    <AboutUs />
+    <Trust />
+    <FAQ />
+    <FinalCTA />
+  </main>
+  <Footer />
+  <SubscribePopup client:load />
 </body>
 </html>

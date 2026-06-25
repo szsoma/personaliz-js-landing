@@ -1,0 +1,56 @@
+---
+// src/components/sections/HowItWorks.astro
+import SectionHeading from '../ui/SectionHeading.astro';
+
+const steps = [
+  {
+    number: '01',
+    title: 'Add the script to your site',
+    description: 'Paste one script tag into your HTML.',
+    code: '<script src="https://cdn.personalizejs.com/p13n.min.js" defer><\/script>',
+    icon: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-6 h-6"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>`,
+  },
+  {
+    number: '02',
+    title: 'Mark the content you want to personalize',
+    description: 'Add simple data attributes to your elements.',
+    code: '<h1 data-variant="h1">Default headline</h1>\n<a data-variant="cta" data-href="cta">Get started</a>',
+    icon: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-6 h-6"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>`,
+  },
+  {
+    number: '03',
+    title: 'Send traffic with personalized URLs',
+    description: 'Use URL parameters in your ad links, emails, or campaigns.',
+    code: 'https://yoursite.com/page?p_h1=ERP_demo&p_cta=Book_a_demo',
+    icon: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-6 h-6"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>`,
+  },
+];
+---
+
+<section class="py-20 md:py-28" id="how-it-works">
+  <div class="mx-auto max-w-6xl px-6">
+    <SectionHeading label="Setup">
+      <h2 class="text-base-content text-2xl md:text-[26px] font-light leading-tight tracking-tight mb-4">
+        How it works
+      </h2>
+    </SectionHeading>
+
+    <div class="space-y-8 mt-12">
+      {steps.map((step) => (
+        <div class="flex flex-col md:flex-row gap-6 md:gap-8 items-start">
+          <div class="flex-shrink-0 flex items-center gap-4">
+            <span class="text-3xl font-light text-primary/30">{step.number}</span>
+            <div class="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center text-primary" set:html={step.icon} />
+          </div>
+          <div class="flex-1">
+            <h3 class="text-base-content text-lg font-medium mb-2">{step.title}</h3>
+            <p class="text-base-content/70 text-base mb-4">{step.description}</p>
+            <div class="mockup-code text-sm">
+              <pre><code>{step.code}</code></pre>
+            </div>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

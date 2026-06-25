@@ -1,0 +1,48 @@
+---
+// src/components/sections/Problem.astro
+import SectionHeading from '../ui/SectionHeading.astro';
+
+const problems = [
+  {
+    title: 'Generic landing pages lower relevance',
+    description: 'Your ad says one thing. Your page says another. That gap can reduce trust and conversions.',
+    icon: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-6 h-6"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>`,
+  },
+  {
+    title: 'Duplicate pages are messy',
+    description: 'Creating one page per campaign means more work, more QA, more clutter, and more things to maintain.',
+    icon: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-6 h-6"><rect x="8" y="2" width="8" height="4" rx="1" ry="1"/><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/><path d="M12 11h4"/><path d="M12 16h4"/><path d="M8 11h.01"/><path d="M8 16h.01"/></svg>`,
+  },
+  {
+    title: 'Developers become the bottleneck',
+    description: 'Simple campaign changes should not require new templates, custom code requests, or another sprint.',
+    icon: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-6 h-6"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>`,
+  },
+];
+---
+
+<section class="py-20 md:py-28 bg-base-200">
+  <div class="mx-auto max-w-6xl px-6">
+    <SectionHeading label="The problem">
+      <h2 class="text-base-content text-2xl md:text-[26px] font-light leading-tight tracking-tight mb-4">
+        Your ads are specific. Your landing page is usually not.
+      </h2>
+      <p class="text-base-content/70 text-base leading-relaxed max-w-2xl mx-auto">
+        PPC teams create highly specific campaigns for different audiences, industries, offers, and keywords.
+        But most traffic still lands on the same generic page. That creates a message mismatch.
+      </p>
+    </SectionHeading>
+
+    <div class="grid md:grid-cols-3 gap-6 mt-12">
+      {problems.map((problem) => (
+        <div class="card bg-base-100 border border-base-300">
+          <div class="card-body">
+            <div class="text-primary mb-4" set:html={problem.icon} />
+            <h3 class="card-title text-base-content text-lg">{problem.title}</h3>
+            <p class="text-base-content/70 text-sm">{problem.description}</p>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

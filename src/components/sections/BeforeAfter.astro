@@ -1,0 +1,68 @@
+---
+// src/components/sections/BeforeAfter.astro
+import SectionHeading from '../ui/SectionHeading.astro';
+---
+
+<section class="py-20 md:py-28 bg-base-200">
+  <div class="mx-auto max-w-6xl px-6">
+    <SectionHeading label="See the difference">
+      <h2 class="text-base-content text-2xl md:text-[26px] font-light leading-tight tracking-tight mb-4">
+        From generic page to campaign-specific page
+      </h2>
+    </SectionHeading>
+
+    <div class="grid md:grid-cols-2 gap-8 mt-12">
+      <!-- Before -->
+      <div class="card bg-base-100 border border-base-300 overflow-hidden">
+        <div class="flex items-center gap-2 border-b border-base-300 bg-base-200 px-4 py-3">
+          <div class="flex gap-1.5">
+            <div class="h-3 w-3 rounded-full bg-error/60"></div>
+            <div class="h-3 w-3 rounded-full bg-warning/60"></div>
+            <div class="h-3 w-3 rounded-full bg-success/60"></div>
+          </div>
+          <div class="flex-1 ml-3">
+            <div class="bg-base-100 rounded-md border border-base-300 px-3 py-1.5 text-xs text-base-content/50 font-mono">
+              /landing-page
+            </div>
+          </div>
+        </div>
+        <div class="card-body">
+          <span class="badge badge-ghost mb-4">Before</span>
+          <h3 class="text-base-content text-xl md:text-2xl font-light mb-3">Grow your business with better software</h3>
+          <p class="text-base-content/70 text-sm mb-4">Book a demo with our team to see how it works.</p>
+          <div>
+            <span class="btn btn-disabled">Contact us</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- After -->
+      <div class="card bg-base-100 border border-primary/20 overflow-hidden shadow-md">
+        <div class="flex items-center gap-2 border-b border-base-300 bg-base-200 px-4 py-3">
+          <div class="flex gap-1.5">
+            <div class="h-3 w-3 rounded-full bg-error/60"></div>
+            <div class="h-3 w-3 rounded-full bg-warning/60"></div>
+            <div class="h-3 w-3 rounded-full bg-success/60"></div>
+          </div>
+          <div class="flex-1 ml-3">
+            <div class="bg-base-100 rounded-md border border-base-300 px-3 py-1.5 text-xs font-mono">
+              /landing-page<span class="text-primary">?p_h1=ERP_demo_for_growing_teams&p_cta=Book_a_demo</span>
+            </div>
+          </div>
+        </div>
+        <div class="card-body">
+          <span class="badge badge-primary mb-4">After</span>
+          <h3 class="text-base-content text-xl md:text-2xl font-light mb-3">ERP demo for growing teams</h3>
+          <p class="text-base-content/70 text-sm mb-4">Book a demo with our team to see how it works.</p>
+          <div>
+            <span class="btn btn-primary">Book a demo</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <p class="text-center text-base-content/50 text-sm mt-8">
+      The page is the same. The message changes based on the URL.
+    </p>
+  </div>
+</section>
