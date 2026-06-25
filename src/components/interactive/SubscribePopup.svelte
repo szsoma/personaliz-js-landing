@@ -72,7 +72,7 @@
         requestAnimationFrame(() => {
           isAnimating = true;
         });
-      }, 10000);
+      }, 5000);
     }
   });
 </script>
