@@ -1,5 +1,6 @@
 ---
 // src/components/layout/Navbar.astro
+import ThemeToggle from '../ui/ThemeToggle.svelte';
 ---
 <nav class="fixed top-0 left-0 right-0 z-50 transition-all duration-300 bg-base-100/95 backdrop-blur-md" id="navbar">
   <div class="mx-auto max-w-6xl px-6">
@@ -11,12 +12,13 @@
       </div>
       <div class="navbar-center hidden lg:flex">
         <ul class="menu menu-horizontal gap-1">
-          <li><a href="#features" class="text-sm text-base-content/70 hover:text-base-content active:text-white active:bg-primary">Features</a></li>
-          <li><a href="#how-it-works" class="text-sm text-base-content/70 hover:text-base-content active:text-white active:bg-primary">How It Works</a></li>
-          <li><a href="#faq" class="text-sm text-base-content/70 hover:text-base-content active:text-white active:bg-primary">FAQ</a></li>
+          <li><a href="#features" class="text-sm text-base-content/70 hover:text-base-content active:text-primary-content active:bg-primary">Features</a></li>
+          <li><a href="#how-it-works" class="text-sm text-base-content/70 hover:text-base-content active:text-primary-content active:bg-primary">How It Works</a></li>
+          <li><a href="#faq" class="text-sm text-base-content/70 hover:text-base-content active:text-primary-content active:bg-primary">FAQ</a></li>
         </ul>
       </div>
-      <div class="navbar-end">
+      <div class="navbar-end gap-2">
+        <ThemeToggle client:load />
         <a href="#subscribe" class="btn btn-primary btn-sm">
           Get early access
         </a>

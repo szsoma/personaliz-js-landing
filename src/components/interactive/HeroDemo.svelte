@@ -135,7 +135,7 @@
     <div class="mb-3">
       <span class="badge badge-primary">URL param → page element</span>
     </div>
-    <h3 class="text-base-content text-2xl md:text-3xl font-light mb-4 leading-tight transition-all duration-500">
+    <h3 class="text-base-content text-2xl md:text-3xl font-normal mb-4 leading-tight transition-all duration-500">
       {headline}
     </h3>
     <p class="text-base-content/70 text-base mb-6 max-w-md leading-relaxed">

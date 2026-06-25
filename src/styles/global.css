@@ -37,7 +37,7 @@
 }
 
 @plugin "daisyui/theme" {
-  name: "stripe";
+  name: "stripe-light";
   default: true;
   prefersdark: false;
   color-scheme: light;
@@ -51,7 +51,7 @@
   --color-secondary-content: #ffffff;
   --color-accent: #ff6118;
   --color-accent-content: #ffffff;
-  --color-neutral: #273951;
+  --color-neutral: #061b31;
   --color-neutral-content: #ffffff;
   --color-info: #533afd;
   --color-info-content: #ffffff;
@@ -69,6 +69,39 @@
   --noise: 0;
 }
 
+@plugin "daisyui/theme" {
+  name: "stripe-dark";
+  default: false;
+  prefersdark: true;
+  color-scheme: dark;
+  --color-base-100: #0f1729;
+  --color-base-200: #0a1122;
+  --color-base-300: #1e293b;
+  --color-base-content: #e2e8f0;
+  --color-primary: #7c7afe;
+  --color-primary-content: #0f1729;
+  --color-secondary: #9d9bfe;
+  --color-secondary-content: #0f1729;
+  --color-accent: #ff7b42;
+  --color-accent-content: #0f1729;
+  --color-neutral: #1e293b;
+  --color-neutral-content: #e2e8f0;
+  --color-info: #7c7afe;
+  --color-info-content: #0f1729;
+  --color-success: #4ade80;
+  --color-success-content: #0f1729;
+  --color-warning: #fbbf24;
+  --color-warning-content: #0f1729;
+  --color-error: #f87171;
+  --color-error-content: #0f1729;
+  --radius-selector: 8px;
+  --radius-field: 8px;
+  --radius-box: 16px;
+  --border: 1px;
+  --depth: 1;
+  --noise: 0;
+}
+
 @layer base {
   html {
     scroll-behavior: smooth;
@@ -76,8 +109,6 @@
 
   body {
     font-family: var(--font-sans);
-    color: var(--color-slate-body);
-    background-color: var(--color-surface-white);
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
   }

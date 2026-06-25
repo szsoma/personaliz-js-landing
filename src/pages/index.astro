@@ -19,10 +19,14 @@ import FinalCTA from '../components/sections/FinalCTA.astro';
 import SubscribePopup from '../components/interactive/SubscribePopup.svelte';
 ---
 <!DOCTYPE html>
-<html lang="en" data-theme="stripe">
+<html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script is:inline>
+    const theme = localStorage.getItem('theme') || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'stripe-dark' : 'stripe-light');
+    document.documentElement.setAttribute('data-theme', theme);
+  </script>
   <title>PersonalizeJS — Turn one page into many campaign-specific landing pages</title>
   <meta name="description" content="Change headlines, subtitles, CTAs, links, and sections based on URL parameters, UTMs, referrer, returning visitors, location, time, or past behavior. No duplicate pages. No backend.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
