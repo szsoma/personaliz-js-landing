@@ -136,4 +136,9 @@
   [data-theme="stripe-dark"] .logo-js {
     fill: #ffffff;
   }
+
+  [data-theme="stripe-dark"] {
+    --logo-s: #ffffff;
+    --logo-j: #ffffff;
+  }
 }
