@@ -17,22 +17,43 @@
   ];
 
   let activeStep = $state(0);
+  let isPaused = $state(false);
+  let interval;
+
+  function startInterval() {
+    interval = setInterval(() => {
+      if (!isPaused) {
+        activeStep = (activeStep + 1) % steps.length;
+      }
+    }, 3000);
+  }
 
   onMount(() => {
-    const interval = setInterval(() => {
-      activeStep = (activeStep + 1) % steps.length;
-    }, 3000);
+    startInterval();
     return () => clearInterval(interval);
   });
+
+  function handleMouseEnter() {
+    isPaused = true;
+  }
+
+  function handleMouseLeave() {
+    isPaused = false;
+  }
 </script>
 
-<div class="space-y-4">
+<div
+  class="space-y-4 min-h-[400px]"
+  onmouseenter={handleMouseEnter}
+  onmouseleave={handleMouseLeave}
+  role="presentation"
+>
   {#each steps as step, i}
     <div
-      class="rounded-xl border transition-all duration-500 {i === activeStep ? 'border-primary/30 bg-base-100 shadow-md' : 'border-base-300 bg-base-200 opacity-50'}"
+      class="rounded-xl border transition-all duration-500 {i === activeStep ? 'border-accent/30 bg-base-100 shadow-md' : 'border-base-300 bg-base-200 opacity-50'}"
     >
       <div class="flex items-center gap-3 px-5 py-3 border-b border-base-300/50">
-        <span class="flex items-center justify-center w-6 h-6 rounded-full text-xs font-semibold {i === activeStep ? 'bg-primary text-primary-content' : 'bg-base-300 text-base-content/50'}">
+        <span class="flex items-center justify-center w-6 h-6 rounded-full text-xs font-semibold {i === activeStep ? 'bg-accent text-accent-content' : 'bg-base-300 text-base-content/50'}">
           {i + 1}
         </span>
         <span class="text-sm font-medium text-base-content">{step.title}</span>
