@@ -29,13 +29,15 @@
 
     try {
       const response = await fetch(
-        `https://api.convertkit.com/v3/forms/${KIT_FORM_ID}/subscribe`,
+        `https://api.kit.com/v4/forms/${KIT_FORM_ID}/subscribers`,
         {
           method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
+          headers: {
+            'Content-Type': 'application/json',
+            'X-Kit-Api-Key': KIT_API_KEY,
+          },
           body: JSON.stringify({
-            api_key: KIT_API_KEY,
-            email: email,
+            email_address: email,
           }),
         }
       );
