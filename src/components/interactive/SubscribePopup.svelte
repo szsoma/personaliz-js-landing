@@ -28,7 +28,28 @@
     errorMessage = '';
 
     try {
-      const response = await fetch(
+      // Step 1: Create subscriber
+      const subscriberResponse = await fetch(
+        'https://api.kit.com/v4/subscribers',
+        {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'X-Kit-Api-Key': KIT_API_KEY,
+          },
+          body: JSON.stringify({
+            email_address: email,
+          }),
+        }
+      );
+
+      if (!subscriberResponse.ok) {
+        const errorData = await subscriberResponse.json();
+        throw new Error(errorData.errors?.[0] || 'Failed to subscribe');
+      }
+
+      // Step 2: Add subscriber to form
+      const formResponse = await fetch(
         `https://api.kit.com/v4/forms/${KIT_FORM_ID}/subscribers`,
         {
           method: 'POST',
@@ -42,16 +63,14 @@
         }
       );
 
-      const data = await response.json();
-
-      if (response.ok) {
+      if (formResponse.ok) {
         isSubmitted = true;
       } else {
-        errorMessage = data.message || 'Something went wrong. Please try again.';
-        isValid = false;
+        const errorData = await formResponse.json();
+        throw new Error(errorData.errors?.[0] || 'Failed to add to form');
       }
     } catch (err) {
-      errorMessage = 'Network error. Please try again.';
+      errorMessage = err.message || 'Something went wrong. Please try again.';
       isValid = false;
     } finally {
       isSubmitting = false;
