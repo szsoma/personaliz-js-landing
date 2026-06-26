@@ -116,7 +116,8 @@
     </div>
     <div class="flex-1 ml-3 min-w-0">
       <div class="bg-base-100 rounded-md border border-base-300 px-3 py-1.5 text-xs font-mono flex items-center">
-        <span class="text-base-content/50 hidden sm:block">https://yoursite.com/landing</span>
+        <span class="text-base-content/50 hidden sm:inline">https://yoursite.com/landing</span>
+        <span class="text-base-content/50 sm:hidden">yoursite.com/...</span>
         <input
           type="text"
           value={typedUrl}
