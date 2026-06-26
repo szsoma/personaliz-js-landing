@@ -11,6 +11,7 @@
   let isSubmitting = $state(false);
   let isValid = $state(true);
   let errorMessage = $state('');
+  let consentGiven = $state(false);
 
   function validateEmail(e) {
     return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(e);
@@ -20,6 +21,12 @@
     if (!validateEmail(email)) {
       isValid = false;
       errorMessage = 'Please enter a valid email';
+      return;
+    }
+
+    if (!consentGiven) {
+      isValid = false;
+      errorMessage = 'Please accept the privacy policy to continue';
       return;
     }
 
@@ -104,8 +111,8 @@
     class:popup-visible={isAnimating}
   >
     <div class="mx-auto max-w-2xl bg-base-100 rounded-2xl shadow-xl border border-base-300 overflow-hidden">
-      <div class="flex items-center justify-between p-4 md:p-5">
-        <div class="flex-1">
+      <div class="flex items-start justify-between p-4 md:p-5 gap-3">
+        <div class="flex-1 min-w-0">
           {#if isSubmitted}
             <div class="flex items-center gap-3">
               <span class="flex-shrink-0 w-8 h-8 rounded-full bg-success/10 flex items-center justify-center">
@@ -120,44 +127,54 @@
             </div>
           {:else}
             <div class="flex flex-col md:flex-row md:items-center gap-3 md:gap-4">
-              <div class="flex-1">
+              <div class="flex-shrink-0">
                 <p class="text-base-content font-medium text-sm">Get early access</p>
                 <p class="text-base-content/50 text-xs">Be the first to know when we launch.</p>
               </div>
               <form
-                class="flex gap-2"
+                class="flex flex-col gap-2 flex-1"
                 onsubmit={(e) => { e.preventDefault(); handleSubmit(); }}
               >
-                <div class="flex flex-col gap-1">
+                <div class="flex gap-2">
                   <input
                     type="email"
                     bind:value={email}
                     placeholder="you@company.com"
                     disabled={isSubmitting}
-                    class="input input-bordered input-sm w-full md:w-56 {isValid ? '' : 'input-error'}"
+                    class="input input-bordered input-sm flex-1 md:w-56 {isValid ? '' : 'input-error'}"
                   />
-                  {#if errorMessage}
-                    <span class="text-error text-xs">{errorMessage}</span>
-                  {/if}
+                  <button
+                    type="submit"
+                    class="btn btn-primary btn-sm flex-shrink-0"
+                    disabled={isSubmitting || !consentGiven}
+                  >
+                    {#if isSubmitting}
+                      <span class="loading loading-spinner loading-xs"></span>
+                    {:else}
+                      Subscribe
+                    {/if}
+                  </button>
                 </div>
-                <button
-                  type="submit"
-                  class="btn btn-primary btn-sm"
-                  disabled={isSubmitting}
-                >
-                  {#if isSubmitting}
-                    <span class="loading loading-spinner loading-xs"></span>
-                  {:else}
-                    Subscribe
-                  {/if}
-                </button>
+                {#if errorMessage}
+                  <span class="text-error text-xs">{errorMessage}</span>
+                {/if}
+                <label class="flex items-start gap-2 cursor-pointer">
+                  <input
+                    type="checkbox"
+                    bind:checked={consentGiven}
+                    class="checkbox checkbox-xs checkbox-primary mt-0.5 flex-shrink-0"
+                  />
+                  <span class="text-base-content/50 text-xs leading-tight">
+                    I agree to receive launch updates. <a href="/privacy" class="link link-primary" target="_blank">Privacy Policy</a>
+                  </span>
+                </label>
               </form>
             </div>
           {/if}
         </div>
         <button
           onclick={dismiss}
-          class="flex-shrink-0 ml-4 w-8 h-8 rounded-lg flex items-center justify-center text-base-content/50 hover:text-base-content hover:bg-base-200 transition-colors"
+          class="flex-shrink-0 w-8 h-8 rounded-lg flex items-center justify-center text-base-content/50 hover:text-base-content hover:bg-base-200 transition-colors"
           aria-label="Dismiss"
         >
           <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">

@@ -1,0 +1,74 @@
+---
+interface Props {
+  title?: string;
+  description?: string;
+  canonical?: string;
+  ogImage?: string;
+  ogType?: 'website' | 'article';
+  noindex?: boolean;
+}
+
+const {
+  title = 'ShiftyJS — Turn one page into many campaign-specific landing pages',
+  description = 'Change headlines, subtitles, CTAs, links, and sections based on URL parameters, UTMs, referrer, returning visitors, location, time, or past behavior. No duplicate pages. No backend.',
+  canonical = Astro.url.href,
+  ogImage = '/OG.jpg',
+  ogType = 'website',
+  noindex = false,
+} = Astro.props;
+
+const siteUrl = Astro.site?.href || Astro.url.origin;
+const absoluteOgImage = ogImage.startsWith('http') ? ogImage : `${siteUrl}${ogImage}`;
+const absoluteCanonical = canonical.startsWith('http') ? canonical : `${siteUrl}${canonical}`;
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'SoftwareApplication',
+  name: 'ShiftyJS',
+  applicationCategory: 'DeveloperApplication',
+  operatingSystem: 'Web',
+  description: 'Turn one page into many campaign-specific landing pages. Change headlines, subtitles, CTAs, links, and sections based on URL parameters, UTMs, referrer, returning visitors, location, time, or past behavior.',
+  url: siteUrl,
+  offers: {
+    '@type': 'Offer',
+    price: '0',
+    priceCurrency: 'USD',
+    availability: 'https://schema.org/ComingSoon',
+  },
+  featureList: [
+    'URL parameter personalization',
+    'UTM-based rules',
+    'CTA text and link swaps',
+    'Show and hide sections',
+    'Returning visitor messages',
+    'Referrer-based personalization',
+    'Behavior-based personalization',
+    'Segment memory',
+  ],
+};
+---
+
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>{title}</title>
+<meta name="description" content={description} />
+<link rel="canonical" href={absoluteCanonical} />
+{noindex && <meta name="robots" content="noindex, nofollow" />}
+
+<meta property="og:type" content={ogType} />
+<meta property="og:title" content={title} />
+<meta property="og:description" content={description} />
+<meta property="og:image" content={absoluteOgImage} />
+<meta property="og:url" content={absoluteCanonical} />
+<meta property="og:site_name" content="ShiftyJS" />
+<meta property="og:locale" content="en_US" />
+
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content={title} />
+<meta name="twitter:description" content={description} />
+<meta name="twitter:image" content={absoluteOgImage} />
+
+<meta name="theme-color" content="#533afd" />
+<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+
+<script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />

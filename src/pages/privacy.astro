@@ -1,0 +1,155 @@
+---
+import '../styles/global.css';
+import Navbar from '../components/layout/Navbar.astro';
+import Footer from '../components/layout/Footer.astro';
+import SEO from '../components/layout/SEO.astro';
+
+const lastUpdated = 'June 25, 2026';
+---
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <SEO
+    title="Privacy Policy — ShiftyJS"
+    description="Learn how ShiftyJS collects, uses, and protects your information. Our privacy policy covers data collection, email subscriptions, third-party services, and your rights."
+    ogType="article"
+  />
+  <script is:inline>
+    const theme = localStorage.getItem('theme') || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'stripe-dark' : 'stripe-light');
+    document.documentElement.setAttribute('data-theme', theme);
+  </script>
+</head>
+<body>
+  <Navbar />
+  <main class="pt-24 pb-16">
+    <article class="mx-auto max-w-3xl px-6">
+      <h1 class="text-base-content text-3xl md:text-4xl font-semibold tracking-tight mb-2">Privacy Policy</h1>
+      <p class="text-base-content/50 text-sm mb-10">Last updated: {lastUpdated}</p>
+
+      <div class="prose prose-slate max-w-none text-base-content/80 space-y-8">
+
+        <section>
+          <h2 class="text-base-content text-xl font-semibold mb-3">Introduction</h2>
+          <p>This Privacy Policy explains how we collect, use, and protect your information when you visit this website and subscribe to receive updates about the launch of ShiftyJS.</p>
+          <p>We respect your privacy and only collect the information necessary to operate this website and send launch-related emails.</p>
+        </section>
+
+        <section>
+          <h2 class="text-base-content text-xl font-semibold mb-3">Information We Collect</h2>
+          <p>If you subscribe to receive updates, we collect:</p>
+          <ul class="list-disc pl-6 space-y-1">
+            <li>Your email address</li>
+            <li>The date and time of your subscription</li>
+          </ul>
+          <p class="mt-3">Depending on your browser and device, some technical information may also be collected automatically, such as:</p>
+          <ul class="list-disc pl-6 space-y-1">
+            <li>IP address</li>
+            <li>Browser type</li>
+            <li>Device information</li>
+            <li>Pages visited</li>
+            <li>Referral URL</li>
+          </ul>
+          <p class="mt-3">This information may be collected by our hosting providers or other third-party services used to operate the website.</p>
+        </section>
+
+        <section>
+          <h2 class="text-base-content text-xl font-semibold mb-3">How We Use Your Information</h2>
+          <p>We use your information to:</p>
+          <ul class="list-disc pl-6 space-y-1">
+            <li>Send product launch announcements</li>
+            <li>Share important updates about the project</li>
+            <li>Notify you when new versions become available</li>
+            <li>Respond to questions if you contact us</li>
+          </ul>
+          <p class="mt-3">We do not sell your personal information.</p>
+          <p>We do not use your email address for unrelated marketing without your consent.</p>
+        </section>
+
+        <section>
+          <h2 class="text-base-content text-xl font-semibold mb-3">Email Subscriptions</h2>
+          <p>Email subscriptions are managed through <a href="https://kit.com/privacy" target="_blank" rel="noopener noreferrer" class="link link-primary">Kit</a> (formerly ConvertKit).</p>
+          <p>When you submit the subscription form, your email address is securely processed and stored by Kit.</p>
+          <p>You can unsubscribe at any time using the unsubscribe link included in every email.</p>
+        </section>
+
+        <section>
+          <h2 class="text-base-content text-xl font-semibold mb-3">Third-Party Services</h2>
+          <p>We use the following service providers to operate this website:</p>
+
+          <div class="space-y-4 mt-4">
+            <div>
+              <h3 class="text-base-content text-lg font-medium mb-1">Vercel</h3>
+              <p>This website is hosted by <a href="https://vercel.com/legal/privacy-policy" target="_blank" rel="noopener noreferrer" class="link link-primary">Vercel</a>.</p>
+              <p>Vercel may process technical information such as IP addresses, browser information, request logs, and performance data necessary to deliver the website securely.</p>
+            </div>
+
+            <div>
+              <h3 class="text-base-content text-lg font-medium mb-1">Cloudflare</h3>
+              <p>The personalization script and related assets may be delivered through <a href="https://www.cloudflare.com/privacypolicy/" target="_blank" rel="noopener noreferrer" class="link link-primary">Cloudflare</a> Workers.</p>
+              <p>Cloudflare may process technical information required to securely deliver content, improve performance, and protect against abuse.</p>
+            </div>
+
+            <div>
+              <h3 class="text-base-content text-lg font-medium mb-1">Kit</h3>
+              <p><a href="https://kit.com/privacy" target="_blank" rel="noopener noreferrer" class="link link-primary">Kit</a> is used to manage email subscriptions and send launch updates.</p>
+              <p>When you subscribe, your email address is processed according to Kit's privacy practices.</p>
+            </div>
+          </div>
+        </section>
+
+        <section>
+          <h2 class="text-base-content text-xl font-semibold mb-3">Cookies and Local Storage</h2>
+          <p>The launch website itself does not intentionally use cookies for marketing purposes.</p>
+          <p>The site may use local storage to remember your theme preference (light or dark mode).</p>
+          <p>If functionality is added in the future that requires cookies or browser storage, this Privacy Policy will be updated accordingly.</p>
+        </section>
+
+        <section>
+          <h2 class="text-base-content text-xl font-semibold mb-3">Data Retention</h2>
+          <p>We keep your email address for as long as you remain subscribed.</p>
+          <p>If you unsubscribe, your information will be removed or retained only as necessary to comply with legal obligations or maintain suppression lists that prevent future unwanted emails.</p>
+        </section>
+
+        <section>
+          <h2 class="text-base-content text-xl font-semibold mb-3">Your Rights</h2>
+          <p>Depending on your location, you may have rights regarding your personal information, including the right to:</p>
+          <ul class="list-disc pl-6 space-y-1">
+            <li>Access your personal data</li>
+            <li>Correct inaccurate information</li>
+            <li>Request deletion of your data</li>
+            <li>Withdraw your consent</li>
+            <li>Object to certain processing activities</li>
+          </ul>
+          <p class="mt-3">To exercise these rights, please contact us using the email address below.</p>
+        </section>
+
+        <section>
+          <h2 class="text-base-content text-xl font-semibold mb-3">Data Security</h2>
+          <p>We take reasonable technical and organizational measures to protect your information from unauthorized access, loss, misuse, or disclosure.</p>
+          <p>However, no method of electronic storage or internet transmission can be guaranteed to be completely secure.</p>
+        </section>
+
+        <section>
+          <h2 class="text-base-content text-xl font-semibold mb-3">International Data Transfers</h2>
+          <p>Some of the third-party services used to operate this website may process information outside your country of residence.</p>
+          <p>These providers implement appropriate safeguards for international data transfers where required by applicable law.</p>
+        </section>
+
+        <section>
+          <h2 class="text-base-content text-xl font-semibold mb-3">Changes to This Policy</h2>
+          <p>This Privacy Policy may be updated from time to time.</p>
+          <p>The latest version will always be available on this page with the updated revision date.</p>
+        </section>
+
+        <section>
+          <h2 class="text-base-content text-xl font-semibold mb-3">Contact</h2>
+          <p>If you have any questions about this Privacy Policy or your personal information, please contact:</p>
+          <p class="mt-2"><strong>Email:</strong> <a href="mailto:privacy@shiftyjs.com" class="link link-primary">privacy@shiftyjs.com</a></p>
+        </section>
+
+      </div>
+    </article>
+  </main>
+  <Footer />
+</body>
+</html>

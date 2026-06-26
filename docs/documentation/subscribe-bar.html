@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Subscribe Bar Demo</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bar-bg: #ffffff;
+      --bar-text: #1a1a2e;
+      --bar-text-muted: rgba(26, 26, 46, 0.5);
+      --bar-border: #e5e7eb;
+      --bar-primary: #6c5ce7;
+      --bar-primary-hover: #5a4bd1;
+      --bar-radius: 16px;
+      --bar-shadow: 0 -4px 24px rgba(0, 0, 0, 0.08);
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background: #f5f5f7;
+      min-height: 200vh;
+      padding: 40px;
+    }
+
+    .demo-note {
+      text-align: center;
+      color: #888;
+      font-size: 14px;
+    }
+
+    /* ── Subscribe bar ── */
+
+    .subscribe-bar {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      z-index: 50;
+      padding: 16px;
+      animation: slideUp 0.4s ease-out forwards;
+    }
+
+    @media (min-width: 768px) {
+      .subscribe-bar { padding: 24px; }
+    }
+
+    .subscribe-bar.is-hidden {
+      animation: slideDown 0.3s ease-in forwards;
+    }
+
+    @keyframes slideUp {
+      0% { transform: translateY(100%); opacity: 0; }
+      100% { transform: translateY(0); opacity: 1; }
+    }
+
+    @keyframes slideDown {
+      0% { transform: translateY(0); opacity: 1; }
+      100% { transform: translateY(100%); opacity: 0; }
+    }
+
+    .subscribe-inner {
+      max-width: 672px;
+      margin: 0 auto;
+      background: var(--bar-bg);
+      border-radius: var(--bar-radius);
+      box-shadow: var(--bar-shadow);
+      border: 1px solid var(--bar-border);
+      overflow: hidden;
+    }
+
+    .subscribe-content {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 16px 20px;
+    }
+
+    @media (min-width: 768px) {
+      .subscribe-content { padding: 20px; }
+    }
+
+    .subscribe-body {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    @media (min-width: 768px) {
+      .subscribe-body {
+        flex-direction: row;
+        align-items: center;
+        gap: 16px;
+      }
+    }
+
+    .subscribe-text { flex: 1; }
+    .subscribe-title {
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--bar-text);
+    }
+    .subscribe-subtitle {
+      font-size: 12px;
+      color: var(--bar-text-muted);
+      margin-top: 2px;
+    }
+
+    .subscribe-form {
+      display: flex;
+      gap: 8px;
+    }
+
+    .subscribe-input {
+      flex: 1;
+      padding: 8px 12px;
+      border: 1px solid var(--bar-border);
+      border-radius: 8px;
+      font-size: 14px;
+      font-family: inherit;
+      color: var(--bar-text);
+      background: white;
+      outline: none;
+      transition: border-color 0.2s;
+      min-width: 0;
+    }
+    .subscribe-input::placeholder { color: #aaa; }
+    .subscribe-input:focus { border-color: var(--bar-primary); }
+
+    @media (min-width: 768px) {
+      .subscribe-input { width: 224px; flex: none; }
+    }
+
+    .subscribe-btn {
+      padding: 8px 16px;
+      background: var(--bar-primary);
+      color: white;
+      border: none;
+      border-radius: 8px;
+      font-size: 14px;
+      font-weight: 500;
+      font-family: inherit;
+      cursor: pointer;
+      white-space: nowrap;
+      transition: background 0.2s, transform 0.1s;
+    }
+    .subscribe-btn:hover { background: var(--bar-primary-hover); }
+    .subscribe-btn:active { transform: scale(0.97); }
+    .subscribe-btn:disabled { opacity: 0.7; cursor: not-allowed; }
+
+    .subscribe-dismiss {
+      flex-shrink: 0;
+      margin-left: 16px;
+      width: 32px;
+      height: 32px;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: none;
+      background: transparent;
+      color: var(--bar-text-muted);
+      cursor: pointer;
+      transition: color 0.15s, background 0.15s;
+    }
+    .subscribe-dismiss:hover {
+      color: var(--bar-text);
+      background: rgba(0, 0, 0, 0.05);
+    }
+    .subscribe-dismiss svg { width: 16px; height: 16px; }
+
+    /* ── Success state ── */
+
+    .subscribe-bar.is-success .subscribe-form,
+    .subscribe-bar.is-success .subscribe-text {
+      display: none;
+    }
+    .subscribe-bar.is-success .subscribe-success { display: flex; }
+
+    .subscribe-success {
+      display: none;
+      align-items: center;
+      gap: 8px;
+      flex: 1;
+    }
+    .subscribe-success-icon {
+      width: 24px;
+      height: 24px;
+      background: #10b981;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      animation: checkPop 0.4s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+    }
+    .subscribe-success-icon svg { width: 14px; height: 14px; color: white; }
+    .subscribe-success-text {
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--bar-text);
+    }
+
+    @keyframes checkPop {
+      0% { transform: scale(0); }
+      100% { transform: scale(1); }
+    }
+  </style>
+</head>
+<body>
+
+  <p class="demo-note">Scroll down — the bar slides up from the bottom.</p>
+
+  <!-- ── Subscribe Bar ── -->
+
+  <div class="subscribe-bar" id="subscribeBar">
+    <div class="subscribe-inner">
+      <div class="subscribe-content">
+        <div class="subscribe-body">
+          <div class="subscribe-text">
+            <p class="subscribe-title">Get early access</p>
+            <p class="subscribe-subtitle">Be the first to know when we launch.</p>
+          </div>
+
+          <!-- Subscribe form -->
+          <form
+            class="subscribe-form"
+            id="subscribeForm"
+            action="#"
+            method="post"
+          >
+            <input
+              class="subscribe-input"
+              type="email"
+              name="email_address"
+              placeholder="you@company.com"
+              required
+              autocomplete="email"
+            >
+            <button class="subscribe-btn" type="submit">Subscribe</button>
+          </form>
+
+          <!-- Success state -->
+          <div class="subscribe-success" id="subscribeSuccess">
+            <div class="subscribe-success-icon">
+              <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/>
+              </svg>
+            </div>
+            <span class="subscribe-success-text">You're in! Check your inbox.</span>
+          </div>
+        </div>
+
+        <button class="subscribe-dismiss" id="subscribeDismiss" aria-label="Dismiss">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="18" y1="6" x2="6" y2="18"></line>
+            <line x1="6" y1="6" x2="18" y2="18"></line>
+          </svg>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const bar = document.getElementById('subscribeBar');
+    const form = document.getElementById('subscribeForm');
+    const dismiss = document.getElementById('subscribeDismiss');
+
+    // Dismiss
+    dismiss.addEventListener('click', () => {
+      bar.classList.add('is-hidden');
+      setTimeout(() => bar.style.display = 'none', 300);
+    });
+
+    // Submit
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const btn = form.querySelector('.subscribe-btn');
+      const email = form.querySelector('input[type="email"]').value;
+      btn.disabled = true;
+      btn.textContent = '...';
+
+      // TODO: Replace with your own endpoint
+      console.log('Subscribe:', email);
+
+      // Simulate success
+      setTimeout(() => {
+        bar.classList.add('is-success');
+      }, 500);
+    });
+  </script>
+
+</body>
+</html>

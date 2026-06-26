@@ -2,6 +2,7 @@
 import '../styles/global.css';
 import Navbar from '../components/layout/Navbar.astro';
 import Footer from '../components/layout/Footer.astro';
+import SEO from '../components/layout/SEO.astro';
 import Hero from '../components/sections/Hero.astro';
 import Problem from '../components/sections/Problem.astro';
 import VSL from '../components/sections/VSL.astro';
@@ -21,10 +22,7 @@ import SubscribePopup from '../components/interactive/SubscribePopup.svelte';
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>ShiftyJS — Turn one page into many campaign-specific landing pages</title>
-  <meta name="description" content="Change headlines, subtitles, CTAs, links, and sections based on URL parameters, UTMs, referrer, returning visitors, location, time, or past behavior. No duplicate pages. No backend.">
+  <SEO />
   <script is:inline>
     const theme = localStorage.getItem('theme') || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'stripe-dark' : 'stripe-light');
     document.documentElement.setAttribute('data-theme', theme);

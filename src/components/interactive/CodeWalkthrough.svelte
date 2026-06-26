@@ -59,7 +59,7 @@
         <span class="text-sm font-medium text-base-content">{step.title}</span>
       </div>
       <div class="p-5">
-        <pre class="text-sm font-mono text-base-content whitespace-pre-wrap leading-relaxed">{step.code}</pre>
+        <pre class="text-sm font-mono text-base-content whitespace-pre-wrap [overflow-wrap:anywhere] leading-relaxed">{step.code}</pre>
       </div>
     </div>
   {/each}

@@ -1,0 +1,334 @@
+- generic [active] [ref=e1]:
+  - navigation [ref=e2]:
+    - generic [ref=e4]:
+      - generic:
+        - link:
+          - /url: /
+          - img
+      - list [ref=e14]:
+        - listitem [ref=e15]:
+          - link "Features" [ref=e16] [cursor=pointer]:
+            - /url: "#features"
+        - listitem [ref=e17]:
+          - link "How It Works" [ref=e18] [cursor=pointer]:
+            - /url: "#how-it-works"
+        - listitem [ref=e19]:
+          - link "FAQ" [ref=e20] [cursor=pointer]:
+            - /url: "#faq"
+      - generic [ref=e21]:
+        - button "Toggle theme" [ref=e23] [cursor=pointer]:
+          - img [ref=e24]
+        - link "Get early access" [ref=e26] [cursor=pointer]:
+          - /url: "#subscribe"
+  - main [ref=e27]:
+    - generic [ref=e30]:
+      - generic [ref=e31]:
+        - heading "Turn one page into many campaign-specific landing pages" [level=1] [ref=e32]
+        - paragraph [ref=e33]: Change headlines, subtitles, CTAs, links, and sections based on URL parameters, UTMs, referrer, returning visitors, location, time, or past behavior. No duplicate pages. No backend. No complex setup.
+        - generic [ref=e34]:
+          - link "Get early access" [ref=e35] [cursor=pointer]:
+            - /url: "#subscribe"
+          - link "See how it works" [ref=e36] [cursor=pointer]:
+            - /url: "#how-it-works"
+        - paragraph [ref=e37]: Built for PPC teams, CMOs, agencies, and growth-focused websites.
+      - generic [ref=e39]:
+        - generic [ref=e46]:
+          - generic [ref=e47]: https://yoursite.com/landing
+          - textbox "?p_h1=Your_headline&p_cta=Your_CTA" [ref=e48]
+        - generic [ref=e49]:
+          - generic [ref=e51]: URL param → page element
+          - heading "ERP demo for growing teams" [level=3] [ref=e52]
+          - paragraph [ref=e53]: Book a demo with our team to see how it works for your business.
+          - generic [ref=e54]:
+            - generic [ref=e55] [cursor=pointer]: Book a demo
+            - generic [ref=e56]: ← Changed from URL
+        - generic [ref=e57]:
+          - generic [ref=e58]: p_h1 → headline
+          - generic [ref=e60]: p_cta → button
+    - generic [ref=e63]:
+      - generic [ref=e64]:
+        - generic [ref=e65]: The problem
+        - heading "Your ads are specific. Your landing page is usually not." [level=2] [ref=e66]
+        - paragraph [ref=e67]: PPC teams create highly specific campaigns for different audiences, industries, offers, and keywords. But most traffic still lands on the same generic page. That creates a message mismatch.
+      - generic [ref=e68]:
+        - generic [ref=e70]:
+          - img [ref=e72]
+          - heading "Generic landing pages lower relevance" [level=3] [ref=e75]
+          - paragraph [ref=e76]: Your ad says one thing. Your page says another. That gap can reduce trust and conversions.
+        - generic [ref=e78]:
+          - img [ref=e80]
+          - heading "Duplicate pages are messy" [level=3] [ref=e83]
+          - paragraph [ref=e84]: Creating one page per campaign means more work, more QA, more clutter, and more things to maintain.
+        - generic [ref=e86]:
+          - img [ref=e88]
+          - heading "Developers become the bottleneck" [level=3] [ref=e91]
+          - paragraph [ref=e92]: Simple campaign changes should not require new templates, custom code requests, or another sprint.
+    - generic [ref=e94]:
+      - generic [ref=e95]:
+        - generic [ref=e96]: How it works
+        - heading "See how one URL changes the page" [level=2] [ref=e97]
+      - generic [ref=e98]:
+        - generic [ref=e99]:
+          - generic [ref=e100]:
+            - generic [ref=e101]:
+              - generic [ref=e102]: "1"
+              - generic [ref=e103]: Add a data attribute
+            - generic [ref=e105]: <h1 data-variant="h1">Default headline</h1> <a data-variant="cta" data-href="cta">Get started</a>
+          - generic [ref=e106]:
+            - generic [ref=e107]:
+              - generic [ref=e108]: "2"
+              - generic [ref=e109]: Use a campaign URL
+            - generic [ref=e111]: https://yoursite.com/page?p_h1=ERP_demo&p_cta=Book_a_demo
+          - generic [ref=e112]:
+            - generic [ref=e113]:
+              - generic [ref=e114]: "3"
+              - generic [ref=e115]: The page updates automatically
+            - generic [ref=e117]: <h1>ERP demo</h1> <a href="/demo">Book a demo</a>
+        - generic [ref=e118]:
+          - generic [ref=e119]:
+            - img [ref=e121]
+            - generic [ref=e123]: Change text and CTAs from URL params
+          - generic [ref=e124]:
+            - img [ref=e126]
+            - generic [ref=e128]: Show or hide sections based on visitor context
+          - generic [ref=e129]:
+            - img [ref=e131]
+            - generic [ref=e133]: Keep one page for many campaigns
+          - link "Show me the script" [ref=e135] [cursor=pointer]:
+            - /url: "#subscribe"
+    - generic [ref=e137]:
+      - heading "Want campaign-specific pages without duplicating pages?" [level=2] [ref=e138]
+      - link "Get early access" [ref=e139] [cursor=pointer]:
+        - /url: "#subscribe"
+      - paragraph [ref=e140]: For PPC teams, CMOs, agencies, and website owners.
+    - generic [ref=e142]:
+      - generic [ref=e143]:
+        - generic [ref=e144]: Why trust us
+        - heading "Built around how modern PPC landing pages actually work" [level=2] [ref=e145]
+      - generic [ref=e146]:
+        - generic [ref=e148]:
+          - img [ref=e150]
+          - heading "Designed for PPC workflows" [level=3] [ref=e153]
+          - paragraph [ref=e154]: Campaign URLs, UTM logic, ad message match, and fast landing page iteration.
+        - generic [ref=e156]:
+          - img [ref=e158]
+          - heading "Works with any website" [level=3] [ref=e160]
+          - paragraph [ref=e161]: HTML, Webflow, WordPress, Next.js, any framework. Just add a script tag.
+        - generic [ref=e163]:
+          - img [ref=e165]
+          - heading "No heavy platform required" [level=3] [ref=e167]
+          - paragraph [ref=e168]: A lightweight script, not a full enterprise personalization suite.
+    - generic [ref=e170]:
+      - generic [ref=e171]:
+        - generic [ref=e172]: Benefits
+        - heading "Why PPC teams and CMOs use it" [level=2] [ref=e173]
+      - generic [ref=e174]:
+        - generic [ref=e177]:
+          - img [ref=e180]
+          - generic [ref=e184]:
+            - heading "Match every campaign to the landing page" [level=3] [ref=e185]
+            - paragraph [ref=e186]: Change the headline, subtitle, CTA text, CTA link, and sections based on the visitor's campaign URL.
+            - code [ref=e188]: A Google Ads campaign for ERP visitors lands on "Book your ERP demo". A LinkedIn campaign for SaaS founders lands on "Scale your SaaS website faster".
+        - generic [ref=e191]:
+          - img [ref=e194]
+          - generic [ref=e197]:
+            - heading "Launch more angles without creating more pages" [level=3] [ref=e198]
+            - paragraph [ref=e199]: Instead of duplicating a page for every campaign, use one page and let the URL change the message.
+            - code [ref=e201]: "One landing page supports: SaaS campaigns, ERP campaigns, founder campaigns, enterprise campaigns, retargeting campaigns."
+        - generic [ref=e204]:
+          - img [ref=e207]
+          - generic [ref=e210]:
+            - heading "Personalize without a heavy tool or developer queue" [level=3] [ref=e211]
+            - paragraph [ref=e212]: Use simple data attributes and a small script. No backend, no complex platform, no full rebuild.
+            - code [ref=e214]: "Add: data-variant=\"h1\" — Then use: ?p_h1=Grow_your_business_online"
+    - generic [ref=e216]:
+      - generic [ref=e217]:
+        - generic [ref=e218]: See the difference
+        - heading "From generic page to campaign-specific page" [level=2] [ref=e219]
+      - generic [ref=e220]:
+        - generic [ref=e221]:
+          - generic [ref=e228]: /landing-page
+          - generic [ref=e229]:
+            - generic [ref=e230]: Before
+            - heading "Grow your business with better software" [level=3] [ref=e231]
+            - paragraph [ref=e232]: Book a demo with our team to see how it works.
+            - generic [ref=e233]:
+              - generic: Contact us
+        - generic [ref=e234]:
+          - generic [ref=e241]: /landing-page?p_h1=ERP_demo_for_growing_teams&p_cta=Book_a_demo
+          - generic [ref=e242]:
+            - generic [ref=e243]: After
+            - heading "ERP demo for growing teams" [level=3] [ref=e244]
+            - paragraph [ref=e245]: Book a demo with our team to see how it works.
+            - generic [ref=e247] [cursor=pointer]: Book a demo
+      - paragraph [ref=e248]: The page is the same. The message changes based on the URL.
+    - generic [ref=e250]:
+      - generic [ref=e251]:
+        - generic [ref=e252]: Setup
+        - heading "How it works" [level=2] [ref=e253]
+      - generic [ref=e254]:
+        - generic [ref=e255]:
+          - generic [ref=e256]:
+            - generic [ref=e257]: "01"
+            - img [ref=e259]
+          - generic [ref=e262]:
+            - heading "Add the script to your site" [level=3] [ref=e263]
+            - paragraph [ref=e264]: Paste one script tag into your HTML.
+            - code [ref=e267]: <script src="https://cdn.personalizejs.com/p13n.min.js" defer></script>
+        - generic [ref=e268]:
+          - generic [ref=e269]:
+            - generic [ref=e270]: "02"
+            - img [ref=e272]
+          - generic [ref=e274]:
+            - heading "Mark the content you want to personalize" [level=3] [ref=e275]
+            - paragraph [ref=e276]: Add simple data attributes to your elements.
+            - code [ref=e279]: <h1 data-variant="h1">Default headline</h1> <a data-variant="cta" data-href="cta">Get started</a>
+        - generic [ref=e280]:
+          - generic [ref=e281]:
+            - generic [ref=e282]: "03"
+            - img [ref=e284]
+          - generic [ref=e287]:
+            - heading "Send traffic with personalized URLs" [level=3] [ref=e288]
+            - paragraph [ref=e289]: Use URL parameters in your ad links, emails, or campaigns.
+            - code [ref=e292]: https://yoursite.com/page?p_h1=ERP_demo&p_cta=Book_a_demo
+    - generic [ref=e294]:
+      - generic [ref=e295]:
+        - generic [ref=e296]: Features
+        - heading "Everything you need for lightweight landing page personalization" [level=2] [ref=e297]
+      - generic [ref=e298]:
+        - generic [ref=e299]:
+          - img [ref=e301]
+          - generic [ref=e303]:
+            - heading "URL parameter personalization" [level=3] [ref=e304]
+            - paragraph [ref=e305]: Change page content from URL values like p_h1, p_subtitle, and p_cta.
+        - generic [ref=e306]:
+          - img [ref=e308]
+          - generic [ref=e310]:
+            - heading "UTM-based rules" [level=3] [ref=e311]
+            - paragraph [ref=e312]: Show, hide, or change content based on utm_source, utm_medium, or utm_campaign.
+        - generic [ref=e313]:
+          - img [ref=e315]
+          - generic [ref=e317]:
+            - heading "CTA text and link swaps" [level=3] [ref=e318]
+            - paragraph [ref=e319]: Change the button label and destination URL for different campaigns.
+        - generic [ref=e320]:
+          - img [ref=e322]
+          - generic [ref=e324]:
+            - heading "Show and hide sections" [level=3] [ref=e325]
+            - paragraph [ref=e326]: Display specific sections only when visitor conditions match.
+        - generic [ref=e327]:
+          - img [ref=e329]
+          - generic [ref=e331]:
+            - heading "Returning visitor messages" [level=3] [ref=e332]
+            - paragraph [ref=e333]: Show different content to people who have visited before.
+        - generic [ref=e334]:
+          - img [ref=e336]
+          - generic [ref=e338]:
+            - heading "Referrer-based personalization" [level=3] [ref=e339]
+            - paragraph [ref=e340]: Change content for visitors coming from Google, LinkedIn, or other sources.
+        - generic [ref=e341]:
+          - img [ref=e343]
+          - generic [ref=e345]:
+            - heading "Behavior-based personalization" [level=3] [ref=e346]
+            - paragraph [ref=e347]: Adapt content based on previous clicks, viewed pages, or submitted forms.
+        - generic [ref=e348]:
+          - img [ref=e350]
+          - generic [ref=e352]:
+            - heading "Segment memory" [level=3] [ref=e353]
+            - paragraph [ref=e354]: Remember useful values like industry or persona across pages.
+        - generic [ref=e355]:
+          - img [ref=e357]
+          - generic [ref=e359]:
+            - heading "Simple data attributes" [level=3] [ref=e360]
+            - paragraph [ref=e361]: Use straightforward attributes instead of a complex setup.
+        - generic [ref=e362]:
+          - img [ref=e364]
+          - generic [ref=e366]:
+            - heading "Lightweight script" [level=3] [ref=e367]
+            - paragraph [ref=e368]: Client-side, fast, and designed for marketing sites.
+    - generic [ref=e370]:
+      - heading "Ready to make your landing pages match your campaigns?" [level=2] [ref=e371]
+      - paragraph [ref=e372]: Use one page for many PPC messages, audiences, and offers.
+      - generic [ref=e373]:
+        - link "Get early access" [ref=e374] [cursor=pointer]:
+          - /url: "#subscribe"
+        - link "View setup example" [ref=e375] [cursor=pointer]:
+          - /url: "#how-it-works"
+    - generic [ref=e377]:
+      - generic [ref=e378]: About us
+      - heading "Built for marketers who move faster than their website process" [level=2] [ref=e379]
+      - generic [ref=e380]:
+        - paragraph [ref=e381]: Most personalization tools are too heavy for simple campaign landing pages. Most teams do not need a full enterprise platform just to change a headline for a Google Ads campaign.
+        - paragraph [ref=e382]: This script is built for the gap in between. It gives PPC teams, CMOs, and website owners a simple way to improve message match, launch campaign variants faster, and reduce page duplication.
+        - paragraph [ref=e383]: No complex platform. No backend setup. No waiting for a developer to create another page version.
+    - generic [ref=e385]:
+      - generic [ref=e386]:
+        - generic [ref=e387]: Trust
+        - heading "Simple enough for marketers. Structured enough for serious teams." [level=2] [ref=e388]
+      - generic [ref=e389]:
+        - generic [ref=e390]:
+          - img [ref=e392]
+          - heading "Safe by default" [level=3] [ref=e394]
+          - paragraph [ref=e395]: The script uses text replacement, not unsafe HTML injection.
+        - generic [ref=e396]:
+          - img [ref=e398]
+          - heading "No tracking by default" [level=3] [ref=e401]
+          - paragraph [ref=e402]: Runs client-side without sending visitor data anywhere.
+        - generic [ref=e403]:
+          - img [ref=e405]
+          - heading "Works with existing pages" [level=3] [ref=e407]
+          - paragraph [ref=e408]: Add attributes to the elements you already have.
+        - generic [ref=e409]:
+          - img [ref=e411]
+          - heading "Built for campaign speed" [level=3] [ref=e413]
+          - paragraph [ref=e414]: Launch new message angles by changing URLs, not duplicating pages.
+    - generic [ref=e416]:
+      - generic [ref=e417]:
+        - generic [ref=e418]: FAQ
+        - heading "Frequently asked questions" [level=2] [ref=e419]
+      - generic [ref=e420]:
+        - generic [ref=e421]:
+          - radio [ref=e422] [cursor=pointer]
+          - generic [ref=e423] [cursor=pointer]: Is this an A/B testing tool? +
+        - generic [ref=e424]:
+          - radio [ref=e425] [cursor=pointer]
+          - generic [ref=e426] [cursor=pointer]: Do I need to duplicate pages? +
+        - generic [ref=e427]:
+          - radio [ref=e428] [cursor=pointer]
+          - generic [ref=e429] [cursor=pointer]: Can marketers use this without developers? +
+        - generic [ref=e430]:
+          - radio [ref=e431] [cursor=pointer]
+          - generic [ref=e432] [cursor=pointer]: Can it change button links? +
+        - generic [ref=e433]:
+          - radio [ref=e434] [cursor=pointer]
+          - generic [ref=e435] [cursor=pointer]: Does it work with Google Ads and LinkedIn Ads? +
+        - generic [ref=e436]:
+          - radio [ref=e437] [cursor=pointer]
+          - generic [ref=e438] [cursor=pointer]: Is it safe to let the URL change page text? +
+        - generic [ref=e439]:
+          - radio [ref=e440] [cursor=pointer]
+          - generic [ref=e441] [cursor=pointer]: Will this hurt page speed? +
+        - generic [ref=e442]:
+          - radio [ref=e443] [cursor=pointer]
+          - generic [ref=e444] [cursor=pointer]: What can I personalize? +
+        - generic [ref=e445]:
+          - radio [ref=e446] [cursor=pointer]
+          - generic [ref=e447] [cursor=pointer]: Who is this for? +
+        - generic [ref=e448]:
+          - radio [ref=e449] [cursor=pointer]
+          - generic [ref=e450] [cursor=pointer]: What is the simplest use case? +
+    - generic [ref=e453]:
+      - heading "Stop sending specific ads to generic landing pages" [level=2] [ref=e454]
+      - paragraph [ref=e455]: Personalize landing pages from campaign URLs, UTMs, visitor behavior, and more.
+      - generic [ref=e456]:
+        - link "Get early access" [ref=e457] [cursor=pointer]:
+          - /url: "#subscribe"
+        - link "See setup example" [ref=e458] [cursor=pointer]:
+          - /url: "#how-it-works"
+      - paragraph [ref=e459]: Built for marketing sites and PPC campaign teams.
+  - contentinfo [ref=e460]:
+    - generic [ref=e462]:
+      - generic:
+        - img
+      - paragraph [ref=e471]: Built for marketers who move faster than their website process.
+      - paragraph [ref=e472]: © 2026 ShiftyJS. All rights reserved.
