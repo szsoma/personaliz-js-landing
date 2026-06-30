@@ -9,10 +9,10 @@ interface Props {
 }
 
 const {
-  title = 'ShiftyJS — Turn one page into many campaign-specific landing pages',
+  title = 'ShiftyJS — One Landing Page, Many Campaign Variants',
   description = 'Change headlines, subtitles, CTAs, links, and sections based on URL parameters, UTMs, referrer, returning visitors, location, time, or past behavior. No duplicate pages. No backend.',
   canonical = Astro.url.href,
-  ogImage = '/OG.jpg',
+  ogImage = '/og.jpg',
   ogType = 'website',
   noindex = false,
 } = Astro.props;
@@ -46,6 +46,19 @@ const jsonLd = {
     'Segment memory',
   ],
 };
+
+const orgSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Organization',
+  name: 'ShiftyJS',
+  url: siteUrl,
+  logo: `${siteUrl}/logo.svg`,
+  contactPoint: {
+    '@type': 'ContactPoint',
+    email: 'privacy@shiftyjs.com',
+    contactType: 'customer service',
+  },
+};
 ---
 
 <meta charset="utf-8" />
@@ -53,7 +66,7 @@ const jsonLd = {
 <title>{title}</title>
 <meta name="description" content={description} />
 <link rel="canonical" href={absoluteCanonical} />
-{noindex && <meta name="robots" content="noindex, nofollow" />}
+<meta name="robots" content={noindex ? 'noindex, nofollow' : 'index, follow'} />
 
 <meta property="og:type" content={ogType} />
 <meta property="og:title" content={title} />
@@ -67,8 +80,13 @@ const jsonLd = {
 <meta name="twitter:title" content={title} />
 <meta name="twitter:description" content={description} />
 <meta name="twitter:image" content={absoluteOgImage} />
+<meta name="twitter:site" content="@shiftyjs" />
+
+<meta name="author" content="ShiftyJS" />
+<link rel="alternate" hreflang="en" href={absoluteCanonical} />
 
 <meta name="theme-color" content="#533afd" />
 <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 
 <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
+<script type="application/ld+json" set:html={JSON.stringify(orgSchema)} />

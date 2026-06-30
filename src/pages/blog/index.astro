@@ -1,0 +1,66 @@
+---
+import '../../styles/global.css';
+import Navbar from '../../components/layout/Navbar.astro';
+import Footer from '../../components/layout/Footer.astro';
+import SEO from '../../components/layout/SEO.astro';
+import { getCollection } from 'astro:content';
+
+const posts = (await getCollection('blog')).sort(
+  (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
+);
+---
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <SEO
+    title="Blog — ShiftyJS"
+    description="Guides on landing page personalization, message match, UTM campaigns, and PPC optimization."
+  />
+  <script is:inline>
+    const theme = localStorage.getItem('theme') || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'stripe-dark' : 'stripe-light');
+    document.documentElement.setAttribute('data-theme', theme);
+  </script>
+</head>
+<body>
+  <Navbar />
+  <main class="pt-24 pb-16">
+    <div class="mx-auto max-w-4xl px-6">
+      <header class="mb-12">
+        <span class="text-primary text-xs font-semibold uppercase tracking-widest mb-3 block">Blog</span>
+        <h1 class="text-base-content text-3xl md:text-4xl font-semibold tracking-tight mb-4">
+          Landing page personalization guides
+        </h1>
+        <p class="text-base-content/70 text-lg">
+          Learn how to personalize landing pages, improve message match, and get more from your PPC campaigns.
+        </p>
+      </header>
+
+      <div class="space-y-8">
+        {posts.map(post => (
+          <a href={`/blog/${post.id}`} class="block group">
+            <div class="card bg-base-100 border border-base-300 hover:border-primary/30 transition-colors">
+              <div class="card-body">
+                <time class="text-base-content/50 text-sm" datetime={post.data.pubDate.toISOString()}>
+                  {post.data.pubDate.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}
+                </time>
+                <h2 class="card-title text-base-content text-xl group-hover:text-primary transition-colors">
+                  {post.data.title}
+                </h2>
+                <p class="text-base-content/70 text-sm">{post.data.description}</p>
+                {post.data.tags.length > 0 && (
+                  <div class="flex flex-wrap gap-2 mt-2">
+                    {post.data.tags.map(tag => (
+                      <span class="badge badge-outline badge-sm">{tag}</span>
+                    ))}
+                  </div>
+                )}
+              </div>
+            </div>
+          </a>
+        ))}
+      </div>
+    </div>
+  </main>
+  <Footer />
+</body>
+</html>

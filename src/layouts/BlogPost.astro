@@ -1,0 +1,72 @@
+---
+import '../styles/global.css';
+import Navbar from '../components/layout/Navbar.astro';
+import Footer from '../components/layout/Footer.astro';
+import SEO from '../components/layout/SEO.astro';
+
+interface Props {
+  title: string;
+  description: string;
+  pubDate: Date;
+  heroImage?: string;
+  tags?: string[];
+}
+
+const { title, description, pubDate, heroImage, tags = [] } = Astro.props;
+
+const articleSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'BlogPosting',
+  headline: title,
+  description,
+  datePublished: pubDate.toISOString(),
+  author: {
+    '@type': 'Organization',
+    name: 'ShiftyJS',
+  },
+  publisher: {
+    '@type': 'Organization',
+    name: 'ShiftyJS',
+    logo: {
+      '@type': 'ImageObject',
+      url: 'https://shiftyjs.com/logo.svg',
+    },
+  },
+};
+---
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <SEO title={`${title} — ShiftyJS`} description={description} ogType="article" />
+  <script is:inline>
+    const theme = localStorage.getItem('theme') || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'stripe-dark' : 'stripe-light');
+    document.documentElement.setAttribute('data-theme', theme);
+  </script>
+  <script type="application/ld+json" set:html={JSON.stringify(articleSchema)} />
+</head>
+<body>
+  <Navbar />
+  <main class="pt-24 pb-16">
+    <article class="mx-auto max-w-3xl px-6">
+      <header class="mb-10">
+        <time class="text-base-content/50 text-sm" datetime={pubDate.toISOString()}>
+          {pubDate.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}
+        </time>
+        <h1 class="text-base-content text-3xl md:text-4xl font-semibold tracking-tight mt-2 mb-4">{title}</h1>
+        <p class="text-base-content/70 text-lg leading-relaxed">{description}</p>
+        {tags.length > 0 && (
+          <div class="flex flex-wrap gap-2 mt-4">
+            {tags.map(tag => (
+              <span class="badge badge-outline badge-sm">{tag}</span>
+            ))}
+          </div>
+        )}
+      </header>
+      <div class="prose prose-slate max-w-none text-base-content/80 space-y-6">
+        <slot />
+      </div>
+    </article>
+  </main>
+  <Footer />
+</body>
+</html>

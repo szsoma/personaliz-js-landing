@@ -43,7 +43,32 @@ const faqs = [
     q: 'What is the simplest use case?',
     a: 'Add a data attribute to a headline, then change it from the URL. Add data-variant="h1" to your h1, then use ?p_h1=Grow_your_business_online.',
   },
+  {
+    q: 'What is landing page personalization?',
+    a: 'Landing page personalization is the practice of changing page content—headlines, images, CTAs—based on who is visiting, where they came from, or what campaign they clicked. It improves message match and conversion rates.',
+  },
+  {
+    q: 'How do I match landing pages to ad campaigns?',
+    a: 'Use URL parameters in your ad links to pass campaign-specific values. ShiftyJS reads those parameters and updates headlines, subtitles, and CTAs on the page automatically. One page can serve many campaign variants.',
+  },
+  {
+    q: 'What is message match in PPC?',
+    a: 'Message match means your landing page headline and content closely reflect the ad the visitor clicked. Strong message match reduces bounce rates and increases conversions because the visitor sees what they expected.',
+  },
 ];
+
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faqs.map(faq => ({
+    '@type': 'Question',
+    name: faq.q,
+    acceptedAnswer: {
+      '@type': 'Answer',
+      text: faq.a,
+    },
+  })),
+};
 ---
 
 <section class="py-20 md:py-28 bg-base-200" id="faq">
@@ -69,3 +94,5 @@ const faqs = [
     </div>
   </div>
 </section>
+
+<script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />

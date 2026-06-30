@@ -1,0 +1,40 @@
+---
+import '../styles/global.css';
+import Navbar from '../components/layout/Navbar.astro';
+import Footer from '../components/layout/Footer.astro';
+import SEO from '../components/layout/SEO.astro';
+
+interface Props {
+  title: string;
+  description: string;
+  platform: string;
+}
+
+const { title, description, platform } = Astro.props;
+---
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <SEO title={`${title} — ShiftyJS`} description={description} />
+  <script is:inline>
+    const theme = localStorage.getItem('theme') || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'stripe-dark' : 'stripe-light');
+    document.documentElement.setAttribute('data-theme', theme);
+  </script>
+</head>
+<body>
+  <Navbar />
+  <main class="pt-24 pb-16">
+    <article class="mx-auto max-w-3xl px-6">
+      <header class="mb-10">
+        <span class="text-primary text-xs font-semibold uppercase tracking-widest mb-3 block">Use case</span>
+        <h1 class="text-base-content text-3xl md:text-4xl font-semibold tracking-tight mb-4">{title}</h1>
+        <p class="text-base-content/70 text-lg leading-relaxed">{description}</p>
+      </header>
+      <div class="prose prose-slate max-w-none text-base-content/80 space-y-6">
+        <slot />
+      </div>
+    </article>
+  </main>
+  <Footer />
+</body>
+</html>
