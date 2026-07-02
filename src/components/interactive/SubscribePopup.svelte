@@ -17,6 +17,14 @@
     return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(e);
   }
 
+  export function show() {
+    isVisible = true;
+    document.body.style.overflow = 'hidden';
+    requestAnimationFrame(() => {
+      isAnimating = true;
+    });
+  }
+
   async function handleSubmit() {
     if (!validateEmail(email)) {
       isValid = false;
@@ -35,7 +43,6 @@
     errorMessage = '';
 
     try {
-      // Step 1: Create subscriber
       const subscriberResponse = await fetch(
         'https://api.kit.com/v4/subscribers',
         {
@@ -55,7 +62,6 @@
         throw new Error(errorData.errors?.[0] || 'Failed to subscribe');
       }
 
-      // Step 2: Add subscriber to form
       const formResponse = await fetch(
         `https://api.kit.com/v4/forms/${KIT_FORM_ID}/subscribers`,
         {
@@ -88,114 +94,144 @@
     isAnimating = false;
     setTimeout(() => {
       isVisible = false;
-    }, 400);
+      document.body.style.overflow = '';
+    }, 300);
     sessionStorage.setItem('p13n-popup-dismissed', 'true');
   }
 
   onMount(() => {
+    window.openSubscribePopup = show;
+
     const dismissed = sessionStorage.getItem('p13n-popup-dismissed');
     if (!dismissed) {
       setTimeout(() => {
-        isVisible = true;
-        requestAnimationFrame(() => {
-          isAnimating = true;
-        });
+        show();
       }, 5000);
     }
+
+    return () => {
+      delete window.openSubscribePopup;
+      document.body.style.overflow = '';
+    };
   });
 </script>
 
 {#if isVisible}
   <div
-    class="popup-container fixed bottom-0 left-0 right-0 z-50 p-4 md:p-6"
-    class:popup-visible={isAnimating}
+    class="fixed inset-0 z-50 flex items-center justify-center p-4"
+    class:backdrop-visible={isAnimating}
   >
-    <div class="mx-auto max-w-2xl bg-base-100 rounded-2xl shadow-xl border border-base-300 overflow-hidden">
-      <div class="flex items-start justify-between p-4 md:p-5 gap-3">
-        <div class="flex-1 min-w-0">
-          {#if isSubmitted}
-            <div class="flex items-center gap-3">
-              <span class="flex-shrink-0 w-8 h-8 rounded-full bg-success/10 flex items-center justify-center">
-                <svg class="w-4 h-4 text-success" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <polyline points="20 6 9 17 4 12" />
-                </svg>
-              </span>
-              <div>
-                <p class="text-base-content font-medium text-sm">You're on the list!</p>
-                <p class="text-base-content/50 text-xs">We'll notify you when we launch.</p>
-              </div>
-            </div>
-          {:else}
-            <div class="flex flex-col md:flex-row md:items-center gap-3 md:gap-4">
-              <div class="flex-shrink-0">
-                <p class="text-base-content font-medium text-sm">Get early access</p>
-                <p class="text-base-content/50 text-xs">Be the first to know when we launch.</p>
-              </div>
-              <form
-                class="flex flex-col gap-2 flex-1"
-                onsubmit={(e) => { e.preventDefault(); handleSubmit(); }}
-              >
-                <div class="flex gap-2">
-                  <input
-                    type="email"
-                    bind:value={email}
-                    placeholder="you@company.com"
-                    disabled={isSubmitting}
-                    class="input input-bordered input-sm flex-1 md:w-56 {isValid ? '' : 'input-error'}"
-                  />
-                  <button
-                    type="submit"
-                    class="btn btn-primary btn-sm flex-shrink-0"
-                    disabled={isSubmitting || !consentGiven}
-                  >
-                    {#if isSubmitting}
-                      <span class="loading loading-spinner loading-xs"></span>
-                    {:else}
-                      Subscribe
-                    {/if}
-                  </button>
-                </div>
-                {#if errorMessage}
-                  <span class="text-error text-xs">{errorMessage}</span>
-                {/if}
-                <label class="flex items-start gap-2 cursor-pointer">
-                  <input
-                    type="checkbox"
-                    bind:checked={consentGiven}
-                    class="checkbox checkbox-xs checkbox-primary mt-0.5 flex-shrink-0"
-                  />
-                  <span class="text-base-content/50 text-xs leading-tight">
-                    I agree to receive launch updates. <a href="/privacy" class="link link-primary" target="_blank">Privacy Policy</a>
-                  </span>
-                </label>
-              </form>
-            </div>
-          {/if}
+    <button
+      class="backdrop absolute inset-0 bg-black/50 backdrop-blur-sm"
+      class:backdrop-fade={isAnimating}
+      onclick={dismiss}
+      aria-label="Close"
+    ></button>
+
+    <div
+      class="popup-card relative w-full max-w-lg bg-base-100 rounded-2xl shadow-2xl border border-base-300 overflow-hidden"
+      class:popup-enter={isAnimating}
+    >
+      <button
+        onclick={dismiss}
+        class="absolute top-4 right-4 w-8 h-8 rounded-lg flex items-center justify-center text-base-content/40 hover:text-base-content hover:bg-base-200 transition-colors z-10"
+        aria-label="Dismiss"
+      >
+        <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="18" y1="6" x2="6" y2="18" />
+          <line x1="6" y1="6" x2="18" y2="18" />
+        </svg>
+      </button>
+
+      {#if isSubmitted}
+        <div class="p-8 md:p-10 text-center">
+          <div class="w-16 h-16 rounded-full bg-success/10 flex items-center justify-center mx-auto mb-4">
+            <svg class="w-8 h-8 text-success" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="20 6 9 17 4 12" />
+            </svg>
+          </div>
+          <h3 class="text-base-content text-xl font-semibold mb-2">You're on the list!</h3>
+          <p class="text-base-content/60 text-sm">We'll notify you as soon as we launch.</p>
         </div>
-        <button
-          onclick={dismiss}
-          class="flex-shrink-0 w-8 h-8 rounded-lg flex items-center justify-center text-base-content/50 hover:text-base-content hover:bg-base-200 transition-colors"
-          aria-label="Dismiss"
+      {:else}
+        <div class="bg-primary/5 border-b border-primary/10 px-8 md:px-10 py-6 text-center">
+          <div class="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center mx-auto mb-3">
+            <svg class="w-6 h-6 text-primary" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />
+              <polyline points="22,6 12,13 2,6" />
+            </svg>
+          </div>
+          <h3 class="text-base-content text-xl font-semibold mb-1">Get early access</h3>
+          <p class="text-base-content/60 text-sm">Be the first to know when ShiftyJS launches.</p>
+        </div>
+
+        <form
+          class="p-8 md:p-10 space-y-4"
+          onsubmit={(e) => { e.preventDefault(); handleSubmit(); }}
         >
-          <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <line x1="18" y1="6" x2="6" y2="18" />
-            <line x1="6" y1="6" x2="18" y2="18" />
-          </svg>
-        </button>
-      </div>
+          <div>
+            <input
+              type="email"
+              bind:value={email}
+              placeholder="you@company.com"
+              disabled={isSubmitting}
+              class="input input-bordered input-md w-full {!isValid ? 'input-error' : ''}"
+            />
+            {#if errorMessage}
+              <p class="text-error text-xs mt-1.5">{errorMessage}</p>
+            {/if}
+          </div>
+
+          <div class="flex items-start gap-2.5">
+            <input
+              type="checkbox"
+              bind:checked={consentGiven}
+              id="consent-checkbox"
+              class="checkbox checkbox-sm checkbox-primary mt-0.5 flex-shrink-0"
+            />
+            <label for="consent-checkbox" class="text-base-content/50 text-xs leading-relaxed cursor-pointer">
+              I agree to receive launch updates. You can unsubscribe anytime.
+            </label>
+            <a href="/privacy" class="link link-primary text-xs" target="_blank">Privacy Policy</a>
+          </div>
+
+          <button
+            type="submit"
+            class="btn btn-primary w-full"
+            disabled={isSubmitting || !consentGiven}
+          >
+            {#if isSubmitting}
+              <span class="loading loading-spinner loading-sm"></span>
+            {:else}
+              Notify me at launch
+            {/if}
+          </button>
+
+          <p class="text-base-content/40 text-xs text-center">No spam. Unsubscribe anytime.</p>
+        </form>
+      {/if}
     </div>
   </div>
 {/if}
 
 <style>
-  .popup-container {
-    transform: translateY(100%);
+  .backdrop {
     opacity: 0;
-    transition: transform 0.4s ease-out, opacity 0.4s ease-out;
+    transition: opacity 0.3s ease-out;
   }
 
-  .popup-visible {
-    transform: translateY(0);
+  .backdrop-fade {
     opacity: 1;
+  }
+
+  .popup-card {
+    opacity: 0;
+    transform: scale(0.95) translateY(10px);
+    transition: opacity 0.3s ease-out, transform 0.3s ease-out;
+  }
+
+  .popup-enter {
+    opacity: 1;
+    transform: scale(1) translateY(0);
   }
 </style>
