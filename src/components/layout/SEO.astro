@@ -59,6 +59,23 @@ const orgSchema = {
     contactType: 'customer service',
   },
 };
+
+const creativeWorkSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'WebSite',
+  name: 'ShiftyJS',
+  url: siteUrl,
+  creator: {
+    '@type': 'Organization',
+    name: 'Fluid Design Studio',
+    url: 'https://www.fluiddesign.pro',
+  },
+  designer: {
+    '@type': 'Organization',
+    name: 'Fluid Design Studio',
+    url: 'https://www.fluiddesign.pro',
+  },
+};
 ---
 
 <meta charset="utf-8" />
@@ -83,6 +100,8 @@ const orgSchema = {
 <meta name="twitter:site" content="@shiftyjs" />
 
 <meta name="author" content="ShiftyJS" />
+<meta name="designer" content="Fluid Design Studio" />
+<meta name="agency" content="Fluid Design Studio" />
 <link rel="alternate" hreflang="en" href={absoluteCanonical} />
 
 <meta name="theme-color" content="#533afd" />
@@ -91,3 +110,4 @@ const orgSchema = {
 
 <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
 <script type="application/ld+json" set:html={JSON.stringify(orgSchema)} />
+<script type="application/ld+json" set:html={JSON.stringify(creativeWorkSchema)} />
